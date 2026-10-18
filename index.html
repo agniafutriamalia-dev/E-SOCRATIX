@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detektif Akar: Kasus Dua Bukti Kembar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Nunito:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#1B2A41;--paper:#F5EBD7;--gold:#E0A526;--red:#C0392B;--ink:#182432;--green:#2f8d68}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);font-family:Nunito,sans-serif;color:var(--ink)}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(#1b2a4122 .7px,transparent .7px);background-size:9px 9px}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
+    .type{font-family:"Courier Prime",monospace}
+    .app-shell{width:100%;min-height:calc(100 * min(var(--vh, 1vh), 1vh));position:relative}
+    .app-header{position:sticky;top:0;z-index:50;background:#1b2a41f5;border-bottom:3px solid var(--gold);color:#fff}
+    .topbar,.nav-list{width:100%;max-width:220mm;margin:auto}
+    .topbar{padding:10px 14px;display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+    .brand{font:700 .92rem "Courier Prime",monospace;letter-spacing:.06em}
+    .agent-chip{display:flex;align-items:center;gap:7px;padding:6px 10px;background:#ffffff15;border:1px solid #ffffff36;border-radius:999px;font-size:.78rem;font-weight:800}
+    .progress-shell{display:flex;align-items:center;gap:7px;min-width:180px;font-size:.8rem;font-weight:800}
+    .progress-track{height:8px;flex:1;overflow:hidden;border-radius:100px;background:#ffffff35}
+    .progress-bar{height:100%;width:0;background:var(--gold);transition:width .35s ease}
+    .profile-btn{display:flex;align-items:center;gap:6px;border:1px solid #ffffff50;background:#ffffff12;color:white;border-radius:999px;padding:6px 10px;font-weight:800;font-size:.78rem}
+    .nav-list{padding:0 14px 10px;display:flex;gap:7px;overflow:auto}
+    .nav-list button{white-space:nowrap;border:1px solid #ffffff3b;border-radius:999px;background:transparent;color:#e7edf3;padding:6px 10px;font-weight:800;font-size:.76rem}
+    .nav-list button.active{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+    main{width:100%;max-width:220mm;min-height:297mm;margin:0 auto;padding:12mm}
+    .page{display:none;animation:enter .35s ease both}
+    .page.active{display:block}
+    @keyframes enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .a4-sheet{min-height:273mm;background:#fffdf7;border:1px solid #d9c9ae;border-radius:10px;padding:12mm;box-shadow:0 14px 32px #1824321c;position:relative}
+    .a4-sheet:after{content:"";position:absolute;inset:6mm;border:1px dashed #b7a98d99;border-radius:5px;pointer-events:none}
+    .a4-sheet>*{position:relative;z-index:1}
+    .cover-sheet{min-height:273mm;background:linear-gradient(135deg,#101d30,#1B2A41 65%,#314c6a);border:0;color:#fff;overflow:hidden;display:grid;place-items:center;text-align:center;padding:15mm;position:relative}
+    .cover-inner{width:min(100%,150mm);position:relative;z-index:1}
+    
+    /* ANIMASI KACA PEMBESAR DETEKTIF */
+    .magnifier-container{width:90px;height:90px;margin:0 auto 15px;position:relative;display:grid;place-items:center}
+    .magnifier-glass{width:65px;height:65px;border:5px solid var(--gold);border-radius:50%;background:rgba(224,165,38,0.15);box-shadow:0 0 15px rgba(224,165,38,0.4),inset 0 0 10px rgba(255,255,255,0.3);position:relative;display:grid;place-items:center;animation:pulseMag 2.5s infinite ease-in-out}
+    .magnifier-glass:after{content:"";position:absolute;width:12px;height:32px;background:var(--gold);bottom:-22px;right:-14px;transform:rotate(-45deg);border-radius:0 0 5px 5px;box-shadow:2px 2px 5px rgba(0,0,0,0.5)}
+    .magnifier-symbol{font-family:"Courier Prime",monospace;font-size:2rem;font-weight:700;color:var(--gold);animation:floatSymbol 2.5s infinite ease-in-out}
+    
+    @keyframes pulseMag{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    @keyframes floatSymbol{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+    .secret-folder{display:inline-block;background:var(--gold);color:var(--navy);padding:7px 18px;font:700 .82rem "Courier Prime",monospace;clip-path:polygon(0 0,100% 0,94% 50%,100% 100%,0 100%,6% 50%);margin-bottom:4mm}
+    .case-title{margin:0;font:700 clamp(2.3rem,6vw,4.5rem)/.9 "Courier Prime",monospace;letter-spacing:.04em}
+    .case-sub{max-width:125mm;margin:5mm auto;color:#f7edd9;font-size:clamp(1rem,2.2vw,1.2rem);font-weight:700}
+    .identity-card{max-width:130mm;margin:7mm auto 0;padding:5mm;text-align:left;background:#f5ebd7;border:2px solid var(--gold);box-shadow:6px 7px 0 #00000028;color:var(--ink)}
+    .identity-card h2{font:700 1rem "Courier Prime",monospace;margin:0 0 10px;color:var(--navy)}
+    .identity-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    label{display:block;font-size:.88rem;font-weight:900;margin:8px 0 5px}
+    input[type=text],input[type=date],textarea,select{width:100%;border:2px solid #c8b999;border-radius:7px;padding:9px;background:#fffefa;color:var(--ink)}
+    textarea{resize:vertical;min-height:72px}
+    .required{color:var(--red)}
+    .form-note{min-height:20px;margin:8px 0 0;color:var(--red);font-size:.8rem;font-weight:800}
+    .cta,.secondary,.danger{border-radius:10px;font-weight:900;padding:11px 16px;transition:.2s}
+    .cta{border:0;background:var(--gold);color:var(--navy);box-shadow:0 4px 0 #a66c09}
+    .cta:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 0 #a66c09}
+    .cta:disabled{cursor:not-allowed;opacity:.5;box-shadow:none}
+    .secondary{border:2px solid var(--navy);background:#fffdf7;color:var(--navy)}
+    .author{margin:5mm 0 1mm;font-weight:800}.institution{margin:0;color:#e7dbc1;font-size:.85rem}
+    .ribbon{display:inline-block;background:var(--gold);color:var(--navy);padding:8px 15px;font:700 .9rem "Courier Prime",monospace;clip-path:polygon(0 0,100% 0,94% 50%,100% 100%,0 100%,6% 50%);margin-bottom:4mm}
+    .page-title{margin:0 0 12px;color:var(--navy);font:700 clamp(1.7rem,4vw,2.4rem)/1 "Courier Prime",monospace}
+    .section-title{margin:0 0 10px;color:var(--navy);font:700 1.05rem "Courier Prime",monospace}
+    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .step,.goal,.mission,.lab-card{background:#fffaf0;border:1px solid #d7c5a7;border-radius:11px;padding:14px}
+    .step-icon{display:grid;place-items:center;width:37px;height:37px;border-radius:50%;background:var(--navy);color:var(--gold);font-weight:900;margin-bottom:8px}
+    .mission{margin-top:13px}
+    .mission h2{margin:0 0 9px;color:var(--navy);font:700 1rem "Courier Prime",monospace}
+    .inline-input{display:inline-block!important;width:auto!important;min-width:105px;padding:6px 8px!important;margin:0 3px}
+    .save-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .seal{padding:7px;color:var(--red);border:3px solid var(--red);font:700 .82rem "Courier Prime",monospace;transform:rotate(-8deg)}
+    .status{display:inline-block;min-height:18px;color:var(--green);font-size:.84rem;font-weight:900}.error{color:var(--red)!important}
+    .lab-sheet{background:linear-gradient(145deg,#101b2a,#213d5d);color:#eff7ff}
+    .lab-sheet .page-title{color:#ffe29a}.lab-sheet .mission,.lab-sheet .lab-card{color:var(--ink)}.lab-sheet .ribbon{color:var(--navy)}
+    
+    /* EMBEDDED IFRAME STYLES */
+    .embed-container{width:100%;height:520px;border:3px solid var(--gold);border-radius:12px;overflow:hidden;background:#fff;margin-top:12px;box-shadow:0 8px 20px rgba(0,0,0,0.25)}
+    .embed-container iframe{width:100%;height:100%;border:0}
+
+    .inspector{display:flex;gap:16px;align-items:center;padding:15px;background:#17273d;color:#fff;border-radius:13px}
+    .detective{width:105px;min-width:105px;height:120px;position:relative}.hat{position:absolute;top:8px;left:4px;width:97px;height:23px;border-bottom:4px solid var(--gold);background:#28394d;border-radius:100% 100% 10px 10px}.face{position:absolute;top:28px;left:20px;width:70px;height:75px;background:#c78c67;border-radius:45%}.eye{position:absolute;top:28px;width:7px;height:7px;border-radius:50%;background:#182432}.eye.a{left:20px}.eye.b{right:20px}.moustache{position:absolute;left:14px;top:48px;width:40px;height:11px;background:#472c21;border-radius:50%}.coat{position:absolute;bottom:0;left:5px;width:96px;height:38px;border-radius:24px 24px 0 0;background:#324c68}
+    .bubble{padding:12px;background:#fffdf7;color:var(--navy);border-radius:10px;font:700 .92rem "Courier Prime",monospace}
+    .modal{position:fixed;z-index:100;inset:0;display:none;place-items:center;padding:18px;background:#101d30b8}.modal.show{display:grid}.modal-box{width:min(100%,470px);padding:22px;border-radius:14px;background:#fffdf7;box-shadow:0 20px 50px #0008}.modal-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .hidden{display:none!important}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+</head>
+<body data-template-id="__page-root" style="background: rgb(245, 235, 215);">
+  <div class="app-shell">
+   <header id="appHeader" class="app-header hidden">
+    <div class="topbar">
+     <div class="brand">⌕ DETEKTIF AKAR</div>
+     <div class="agent-chip"><i data-lucide="shield-check" width="15"></i><span id="agentGreeting">Agen Detektif</span></div>
+     <div class="progress-shell"><span>Progres</span>
+      <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div><span id="progressText">0%</span>
+     </div><button id="profileButton" class="profile-btn" type="button"><i data-lucide="user-round-pen" width="14"></i> Profil</button>
+    </div>
+    <nav class="nav-list"><button type="button" data-go="cover">Sampul</button> <button type="button" data-go="guide">Petunjuk</button> <button type="button" data-go="predict">Predict</button> <button type="button" data-go="observe">Observe</button> <button type="button" data-go="explain">Explain</button> <button type="button" data-go="verdict">Putusan</button> <button type="button" data-go="closing">Penutup</button></nav>
+   </header>
+   <main>
+    <!-- SAMPUL -->
+    <section id="cover" class="page active">
+     <div class="canva-panel cover-sheet" style="background: linear-gradient(135deg, rgb(16, 29, 48), rgb(27, 42, 65));">
+      <div class="cover-inner">
+       
+       <!-- ANIMASI KACA PEMBESAR DETEKTIF -->
+       <div class="magnifier-container">
+         <div class="magnifier-glass">
+           <span class="magnifier-symbol">√x</span>
+         </div>
+       </div>
+
+       <div class="secret-folder">BERKAS KASUS • RAHASIA</div>
+       <h1 class="case-title">DETEKTIF AKAR</h1>
+       <p class="case-sub">Kasus Dua Bukti Kembar: Persamaan &amp; Fungsi Irasional</p>
+       <div class="identity-card">
+        <h2>IDENTITAS AGEN DETEKTIF</h2>
+        <div class="identity-grid">
+         <div><label for="namaSiswa">Nama siswa <span class="required">*</span></label><input id="namaSiswa" type="text" placeholder="Contoh: Siti Nurhaliza"></div>
+         <div><label for="kelasSiswa">Kelas <span class="required">*</span></label><input id="kelasSiswa" type="text" placeholder="Contoh: X-A"></div>
+         <div><label for="absenSiswa">No. Absen</label><input id="absenSiswa" type="text" placeholder="Contoh: 12"></div>
+         <div><label for="tanggalSiswa">Tanggal</label><input id="tanggalSiswa" type="date"></div>
+        </div>
+        <p id="identityNote" class="form-note"></p><button id="startButton" class="cta w-full mt-2" type="button">Mulai Penyelidikan</button>
+       </div>
+       <p class="author">Disusun oleh: Agnia Futri Amalia</p>
+       <p class="institution">Program Studi Pendidikan Matematika, FKIP, Universitas Islam Nusantara</p>
+      </div>
+     </div>
+    </section>
+
+    <!-- PETUNJUK -->
+    <section id="guide" class="page">
+     <div class="a4-sheet">
+      <div class="ribbon">BRIEFING AWAL</div>
+      <h1 class="page-title">Petunjuk Penyelidikan</h1>
+      
+      <div class="grid2 gap-6 mt-4">
+       <div>
+        <h2 class="section-title text-[#1B2A41]">Langkah Investigasi (POE)</h2>
+        <div class="space-y-3">
+         <article class="step flex gap-3 items-start p-3 bg-[#fffaf0] border border-[#d7c5a7] rounded-lg">
+          <div class="step-icon shrink-0">1</div>
+          <div><h3 class="font-bold text-[#1B2A41] m-0">Pengintaian (Predict)</h3><p class="text-sm m-0 text-slate-700">Analisis syarat domain dan buat sketsa grafik fungsi secara manual.</p></div>
+         </article>
+         <article class="step flex gap-3 items-start p-3 bg-[#fffaf0] border border-[#d7c5a7] rounded-lg">
+          <div class="step-icon shrink-0">2</div>
+          <div><h3 class="font-bold text-[#1B2A41] m-0">Olah TKP (Observe)</h3><p class="text-sm m-0 text-slate-700">Eksplorasi grafik digital interaktif GeoGebra langsung di LKPD.</p></div>
+         </article>
+         <article class="step flex gap-3 items-start p-3 bg-[#fffaf0] border border-[#d7c5a7] rounded-lg">
+          <div class="step-icon shrink-0">3</div>
+          <div><h3 class="font-bold text-[#1B2A41] m-0">Interogasi (Explain)</h3><p class="text-sm m-0 text-slate-700">Diskusi Sokratik bersama AI Inspektur Akar &amp; susun Lembar Putusan.</p></div>
+         </article>
+        </div>
+       </div>
+
+       <aside class="goal bg-[#fffaf0] border border-[#d7c5a7] rounded-lg p-5 flex flex-col justify-between">
+        <div>
+         <h2 class="section-title text-[#1B2A41]">Tujuan Misi Utama</h2>
+         <ol class="space-y-2 pl-5 list-decimal text-sm font-semibold text-slate-800">
+          <li>Menganalisis irisan domain syarat bentuk akar.</li>
+          <li>Melukis grafik fungsi irasional manual di kertas berpetak.</li>
+          <li>Memverifikasi perpotongan grafik di laboratorium GeoGebra.</li>
+          <li>Menyimpulkan akar sah bersama Inspektur Akar (AI).</li>
+         </ol>
+        </div>
+        <button class="cta w-full mt-6" data-go="predict" type="button">Mulai Tahap Predict →</button>
+       </aside>
+      </div>
+     </div>
+    </section>
+
+    <!-- TAHAP 1: PREDICT -->
+    <section id="predict" class="page">
+     <div class="a4-sheet">
+      <div class="ribbon">TAHAP 1: PREDICT</div>
+      <h1 class="page-title">Pengintaian &amp; Melukis Bukti</h1>
+      <div class="mission border-2 border-[#1B2A41] bg-[#fffaf0] p-4 rounded-lg">
+       <span class="type text-sm font-bold text-[#C0392B]">BARANG BUKTI A &amp; B</span>
+       <div class="text-center font-bold text-2xl my-3 type">√(x² − 4) = √(x + 2)</div>
+       <p class="leading-relaxed text-sm">🕵️ Terjadi duplikasi bukti! Dua ekspresi akar kuadrat ditemukan bernilai sama. Tugasmu, Agen: analisis syarat keamanan, lukis kurva fungsinya secara manual, dan rumuskan dugaan titik potong sebelum membuka GeoGebra!</p>
+      </div>
+
+      <article class="mission">
+       <h2>Misi 1: Pemeriksaan Syarat &amp; Analisis Aljabar</h2>
+       <label>a. Syarat Terdefinisi (Domain Pertidaksamaan):</label>
+       <p class="text-sm">Syarat Akar 1: x² − 4 ≥ 0 ⇒ (x − 2)(x + 2) ≥ 0 ⇒ x ≤ <input id="misi1a_syarat1_a" data-field="misi1a_syarat1" class="inline-input" type="text"> atau x ≥ <input class="inline-input" type="text"></p>
+       <p class="text-sm mt-2">Syarat Akar 2: x + 2 ≥ 0 ⇒ x ≥ <input id="misi1a_syarat2" data-field="misi1a_syarat2" class="inline-input" type="text"></p>
+       <p class="text-sm mt-2 font-bold">Irisan Syarat Keseluruhan (Daerah Valid x): x = <input id="misi1a_irisan" data-field="misi1a_irisan" class="inline-input" type="text"> atau x ≥ <input class="inline-input" type="text"></p>
+       
+       <label class="mt-4">b. Perburuan Tersangka (Penyelesaian Aljabar):</label>
+       <p class="text-sm">Kuadratkan kedua ruas: x² − 4 = <input id="misi1b_kuadrat" data-field="misi1b_kuadrat" class="inline-input" type="text"></p>
+       <p class="text-sm mt-1">Persamaan kuadrat baku: x² − x − <input id="misi1b_persamaan" data-field="misi1b_persamaan" class="inline-input" type="text"> = 0</p>
+       <p class="text-sm mt-1">Faktorkan: (x − <input id="misi1b_faktor" data-field="misi1b_faktor" class="inline-input" type="text">)(x + ...) = 0</p>
+       <p class="text-sm mt-1 font-bold">Calon Tersangka: x = <input id="misi1b_tersangka" data-field="misi1b_tersangka" class="inline-input" type="text"> atau x = ...</p>
+      </article>
+
+      <article class="mission">
+       <h2>Misi 2: Melukis Bukti (Aktivitas Menggambar)</h2>
+       <p class="text-sm mb-3">Gambarlah grafik fungsi <strong>y₁ = √(x² − 4)</strong> dan <strong>y₂ = √(x + 2)</strong> pada kertas berpetak / Canva sesuai tabel titik bantu di petunjuk. Setelah selesai menggambar, unggah/simpan foto hasil pekerjanmu ke folder Google Drive berikut:</p>
+       
+       <div class="lab-card text-center my-3 bg-[#fdf8ec] p-4 border border-[#e0a526] rounded-lg">
+        <button id="openDriveFolder" class="cta mb-2" type="button">📁 Unggah Hasil Lukisan Sketsa ke Google Drive</button>
+        <div class="bg-white p-3 border border-[#c8b999] rounded text-left text-xs font-mono text-slate-700 mt-2">
+         <span class="font-bold text-[#C0392B]">📌 Format Penulisan Nama File:</span><br>
+         Misi 2_Kelas_Nama_No. Absen<br>
+         <span class="text-slate-500 font-sans italic">(Contoh: Misi 2_X-A_Siti Nurhaliza_12)</span>
+        </div>
+       </div>
+      </article>
+
+      <article class="mission">
+       <h2>Misi 3: Rumuskan Dugaan Titik Potong</h2>
+       <p class="font-bold text-sm">Berdasarkan sketsa grafik manual yang telah kamu buat:</p>
+       <label>a. Berapa banyak titik potong yang terlihat antara kurva y₁ dan y₂?</label>
+       <select id="misi3_jml_potong" data-field="misi3_jml_potong"><option value="">Pilih jumlah</option><option>0 Titik</option><option>1 Titik</option><option>2 Titik</option></select>
+       <label class="mt-2">b. Perkiraan koordinat titik potong tersebut:</label>
+       <input id="misi3_koordinat" data-field="misi3_koordinat" type="text" placeholder="Contoh: (-2,0) dan (3, 2.24)">
+       <label class="mt-2">c. Apakah tersangka hasil aljabar (x = 3 dan x = -2) cocok dengan titik potong pada grafikmu?</label>
+       <select id="misi3_cocok" data-field="misi3_cocok"><option value="">Pilih</option><option>Ya</option><option>Tidak</option></select>
+      </article>
+
+      <div class="save-row">
+       <span class="seal">KUNCI DUGAAN</span>
+       <div><span id="predictStatus" class="status mr-2"></span><button id="savePredict" class="cta" type="button">Kunci Dugaan &amp; Lanjut ke Olah TKP GeoGebra</button></div>
+      </div>
+     </div>
+    </section>
+
+    <!-- TAHAP 2: OBSERVE -->
+    <section id="observe" class="page">
+     <div class="a4-sheet lab-sheet">
+      <div class="ribbon">TAHAP 2: OBSERVE</div>
+      <h1 class="page-title">Olah TKP GeoGebra</h1>
+      <p class="text-sm">🔍 Bukti grafik digital telah siap. Eksplorasi langsung grafik interaktif di bawah ini untuk mengonfirmasi titik potongnya!</p>
+      
+      <!-- EMBEDDED GEOGEBRA -->
+      <div class="embed-container">
+        <iframe src="https://www.geogebra.org/calculator/drg2nq7s?embed" title="Laboratorium GeoGebra Interaktif" allowfullscreen></iframe>
+      </div>
+
+      <article class="mission mt-4">
+       <h2>Misi 4: Verifikasi &amp; Eksplorasi Slider</h2>
+       <p class="text-sm">Amati kurva <strong>y₁ = √(x² − 4)</strong> (Warna Merah) dan kurva <strong>y₂ = √(x + 2)</strong> (Warna Biru). Geser Slider a ke koordinat tersangka:</p>
+       <div class="grid2 mt-2">
+        <div>
+         <label>Saat x = −2:</label>
+         <input id="misi4_xneg2_val" data-field="misi4_xneg2_val" type="text" placeholder="Nilai y1 = ... dan y2 = ...">
+         <label class="mt-1">Apakah kedua kurva menempel di titik pangkal yang sama?</label>
+         <select id="misi4_xneg2_menempel" data-field="misi4_xneg2_menempel"><option value="">Pilih</option><option>Ya</option><option>Tidak</option></select>
+        </div>
+        <div>
+         <label>Saat x = 3:</label>
+         <input id="misi4_x3_val" data-field="misi4_x3_val" type="text" placeholder="Nilai y1 = ... dan y2 = ...">
+         <label class="mt-1">Apakah terjadi perpotongan kurva?</label>
+         <select id="misi4_x3_potong" data-field="misi4_x3_potong"><option value="">Pilih</option><option>Ya</option><option>Tidak</option></select>
+        </div>
+       </div>
+       <label class="mt-3">Titik Potong Persis dari GeoGebra [Intersect(y₁, y₂)]:</label>
+       <div class="grid2">
+        <input id="misi4_titikA" data-field="misi4_titikA" type="text" placeholder="Titik A = (..., ...)">
+        <input id="misi4_titikB" data-field="misi4_titikB" type="text" placeholder="Titik B = (..., ...)">
+       </div>
+      </article>
+
+      <div class="save-row">
+       <button class="secondary" data-go="predict" type="button">← Sebelumnya</button>
+       <div><span id="observeStatus" class="status mr-2"></span><button id="saveObserve" class="cta" type="button">Simpan Bukti &amp; Lanjut →</button></div>
+      </div>
+     </div>
+    </section>
+
+    <!-- TAHAP 3: EXPLAIN -->
+    <section id="explain" class="page">
+     <div class="a4-sheet">
+      <div class="ribbon">TAHAP 3: EXPLAIN</div>
+      <h1 class="page-title">Ruang Interogasi AI</h1>
+      <div class="inspector mb-4">
+       <div class="detective"><div class="hat"></div><div class="face"><span class="eye a"></span><span class="eye b"></span><span class="moustache"></span></div><div class="coat"></div></div>
+       <div>
+        <p class="type text-[#E0A526] font-bold m-0 mb-1">INSPEKTUR AKAR (AI)</p>
+        <div class="bubble">Aku hanya bertanya, kamulah yang menemukan jawabannya. Mulai percakapan pada jendela obrolan di bawah ini!</div>
+       </div>
+      </div>
+
+      <!-- EMBEDDED CHATBOT AI BOTPRESS -->
+      <div class="embed-container" style="height:550px;">
+        <iframe src="https://cdn.botpress.cloud/webchat/v5.0/shareable.html?configUrl=https://files.bpcontent.cloud/2026/10/07/06/20261007062343-KC46QV6R.json" title="Chatbot Inspektur Akar" allow="microphone"></iframe>
+      </div>
+
+      <article class="mission mt-4">
+       <h2>Misi 5: Diskusi Sokratik bersama AI</h2>
+       <p class="text-sm">Buka chat, diskusikan kenapa x = -2 dan x = 3 keduanya merupakan penyelesaian yang sah. Tuliskan 3 poin penting hasil diskusimu:</p>
+       <div class="grid3 mt-2">
+        <div><label>Kesimpulan 1</label><textarea id="misi5_diskusi1" data-field="misi5_diskusi1"></textarea></div>
+        <div><label>Kesimpulan 2</label><textarea id="misi5_diskusi2" data-field="misi5_diskusi2"></textarea></div>
+        <div><label>Kesimpulan 3</label><textarea id="misi5_diskusi3" data-field="misi5_diskusi3"></textarea></div>
+       </div>
+      </article>
+
+      <div class="save-row">
+       <button class="secondary" data-go="observe" type="button">← Sebelumnya</button>
+       <div><span id="explainStatus" class="status mr-2"></span><button id="saveExplain" class="cta" type="button">Lanjut ke Lembar Putusan →</button></div>
+      </div>
+     </div>
+    </section>
+
+    <!-- LEMBAR PUTUSAN -->
+    <section id="verdict" class="page">
+     <div class="a4-sheet">
+      <div class="ribbon">LEMBAR PUTUSAN</div>
+      <h1 class="page-title">Lembar Putusan Akhir</h1>
+      <p class="type text-[#C0392B] font-bold text-sm">BERKAS AKHIR • ISI BERDASARKAN BUKTI BERSAMA INSPEKTUR AKAR</p>
+      
+      <article class="mission">
+       <label for="misi6_alasan_sah">1. Mengapa pada kasus √(x² − 4) = √(x + 2) kedua nilai x hasil pengkuadratan (x = -2 dan x = 3) lolos sebagai penyelesaian sah?</label>
+       <textarea id="misi6_alasan_sah" data-field="misi6_alasan_sah" placeholder="Jelaskan berdasarkan irisan domain dan pengujian grafik..."></textarea>
+       
+       <label for="misi6_arti_visual" class="mt-3">2. Hubungan Konseptual: Menyelesaikan persamaan irasional f(x) = g(x) secara visual sama artinya dengan mencari...</label>
+       <input id="misi6_arti_visual" data-field="misi6_arti_visual" type="text" placeholder="titik ... antara grafik fungsi y1 dan y2">
+       
+       <label for="misi6_hp" class="mt-3">3. Kesimpulan Himpunan Penyelesaian (HP):</label>
+       <input id="misi6_hp" data-field="misi6_hp" type="text" placeholder="HP = {-2, 3}">
+
+       <div class="grid2 mt-4">
+        <div>
+         <label for="misi6_refleksi">Refleksi: Dugaan Awalku</label>
+         <select id="misi6_refleksi" data-field="misi6_refleksi"><option value="">Pilih refleksi</option><option>Benar</option><option>Perlu Perbaikan</option></select>
+        </div>
+        <div>
+         <label for="misi6_keyakinan">Keyakinanku Saat Ini (1–5)</label>
+         <select id="misi6_keyakinan" data-field="misi6_keyakinan"><option value="">Pilih angka</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 😎</option></select>
+        </div>
+       </div>
+      </article>
+
+      <div class="save-row">
+       <button class="secondary" data-go="explain" type="button">← Kembali ke Explain</button>
+       <div><span id="verdictStatus" class="status mr-2"></span><button id="saveVerdict" class="cta" type="button">Simpan Lembar Putusan</button></div>
+      </div>
+     </div>
+    </section>
+
+    <!-- PENUTUP -->
+    <section id="closing" class="page">
+     <div class="a4-sheet text-center">
+      <div class="stamp bg-[#2f8d68] border-[#2f8d68] text-white">KASUS TERPECAHKAN</div>
+      <h1 class="page-title mt-6">Penghargaan Agen Detektif</h1>
+      <p class="max-w-2xl mx-auto text-base font-bold">Selamat, Agen! Kamu telah berhasil memecahkan Kasus Dua Bukti Kembar dan membuktikan bahwa penyelesaian persamaan irasional selaras dengan titik potong grafik fungsinya.</p>
+      
+      <div class="mission mt-7 text-left">
+       <h2>Ringkasan Progres Agen</h2>
+       <p id="closingProgress" class="font-bold">Memuat progres…</p>
+       <div class="progress-track mt-3"><div id="closingBar" class="progress-bar"></div></div>
+      </div>
+      
+      <div class="flex justify-center gap-3 flex-wrap mt-7">
+       <button class="secondary" data-go="verdict" type="button">← Kembali ke Lembar Putusan</button>
+       <button id="resetButton" class="danger" type="button">Ulangi Kasus</button>
+      </div>
+     </div>
+    </section>
+   </main>
+  </div>
+
+  <!-- MODAL PROFILE -->
+  <div id="profileModal" class="modal">
+   <div class="modal-box">
+    <h2 class="section-title">Perbarui Identitas Agen</h2>
+    <div class="identity-grid">
+     <div><label for="profileNama">Nama siswa *</label><input id="profileNama" type="text"></div>
+     <div><label for="profileKelas">Kelas *</label><input id="profileKelas" type="text"></div>
+     <div><label for="profileAbsen">No. Absen</label><input id="profileAbsen" type="text"></div>
+     <div><label for="profileTanggal">Tanggal</label><input id="profileTanggal" type="date"></div>
+    </div>
+    <p id="profileNote" class="form-note"></p>
+    <div class="modal-actions">
+     <button id="cancelProfile" class="secondary" type="button">Batal</button>
+     <button id="saveProfile" class="cta" type="button">Simpan Identitas</button>
+    </div>
+   </div>
+  </div>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz5Nxqpoz3MEOlqX33o1ozlpeYRlmh5nHrmbzmt1YU52zne3ujR4WyYOre7Yrg3UD4nrQ/exec";
+    const DRIVE_FOLDER_URL = "https://drive.google.com/drive/folders/1ExtSC8PxRCGqAC-wNKRRZr6cbxlBkDLQ?usp=sharing"; 
+
+    let currentRecord = null, activePage = "cover";
+    const $ = selector => document.querySelector(selector);
+
+    function profileValues(){
+      return {
+        nama_siswa: $("#namaSiswa").value.trim(),
+        kelas: $("#kelasSiswa").value.trim(),
+        no_absen: $("#absenSiswa").value.trim(),
+        tanggal: $("#tanggalSiswa").value
+      };
+    }
+
+    function validIdentity(data){ 
+      return Boolean(data.nama_siswa && data.kelas); 
+    }
+
+    function updateGreeting(){
+      const name = currentRecord?.nama_siswa || $("#namaSiswa").value.trim();
+      const kelas = currentRecord?.kelas || $("#kelasSiswa").value.trim();
+      $("#agentGreeting").textContent = name ? `Agen Detektif: ${name}${kelas ? " • " + kelas : ""}` : "Agen Detektif";
+    }
+
+    function currentData(){
+      const data = {...(currentRecord || {}), ...profileValues()};
+      document.querySelectorAll("[data-field]").forEach(el => {
+        const key = el.dataset.field;
+        if(el.type === "radio"){ if(el.checked) data[key] = el.value; }
+        else data[key] = el.value;
+      });
+      data.last_page = activePage;
+      data.updated_at = new Date().toISOString();
+      return data;
+    }
+
+    function progress(){
+      const data = currentData();
+      const core = ["misi1a_syarat1","misi1a_syarat2","misi1a_irisan","misi1b_kuadrat","misi1b_persamaan","misi1b_tersangka","misi3_jml_potong","misi4_xneg2_val","misi4_x3_val","misi5_diskusi1","misi5_diskusi2","misi6_alasan_sah","misi6_hp"];
+      const count = core.filter(key => String(data[key] || "").trim()).length;
+      const percent = Math.round((count / core.length) * 100);
+      $("#progressBar").style.width = percent + "%";
+      $("#progressText").textContent = percent + "%";
+      $("#closingBar").style.width = percent + "%";
+      $("#closingProgress").textContent = `${count} dari ${core.length} bukti utama telah dicatat (${percent}%).`;
+
+      // Penguncian Tombol Lanjut Tahap 1 jika belum lengkap
+      const predictFields = ["misi1a_syarat1","misi1a_syarat2","misi1a_irisan","misi1b_kuadrat","misi1b_persamaan","misi1b_faktor","misi1b_tersangka","misi3_jml_potong","misi3_koordinat","misi3_cocok"];
+      const predictComplete = predictFields.every(field => String(data[field] || "").trim() !== "");
+      const savePredictBtn = $("#savePredict");
+      if(savePredictBtn){
+        savePredictBtn.disabled = !predictComplete;
+      }
+    }
+
+    function showPage(id){
+      if(id !== "cover" && !validIdentity(profileValues())) { 
+        showPage("cover"); 
+        return; 
+      }
+      activePage = id;
+      document.querySelectorAll(".page").forEach(page => page.classList.toggle("active", page.id === id));
+      document.querySelectorAll("[data-go]").forEach(button => button.classList.toggle("active", button.dataset.go === id));
+      $("#appHeader").classList.toggle("hidden", id === "cover");
+      window.scrollTo({top:0,behavior:"smooth"});
+      progress();
+    }
+
+    function setStatus(id, message, bad=false){ 
+      const el=$(id); 
+      if(el) {
+        el.textContent=message; 
+        el.classList.toggle("error",bad); 
+      }
+    }
+
+    async function sendToGoogleSheets(data){
+      if(GOOGLE_SCRIPT_URL){
+        try {
+          fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+          });
+        } catch(e) {
+          console.log("Sync error:", e);
+        }
+      }
+    }
+
+    async function saveIdentity(control){
+      const data = profileValues();
+      if(!validIdentity(data)){
+        $("#identityNote").textContent = "Nama siswa dan kelas wajib diisi.";
+        return;
+      }
+      
+      control.disabled = true;
+      const original = control.textContent;
+      control.textContent = "Membuka Berkas...";
+      
+      currentRecord = {...data};
+      updateGreeting();
+      sendToGoogleSheets(currentData());
+
+      setTimeout(() => {
+        $("#identityNote").textContent = "";
+        $("#appHeader").classList.remove("hidden");
+        showPage("guide");
+        control.disabled = false;
+        control.textContent = original;
+      }, 300);
+    }
+
+    async function save(control, statusId, nextPage, complete=false){
+      const payload = currentData();
+      if(!validIdentity(payload)){ 
+        showPage("cover"); 
+        setStatus(statusId,"Lengkapi identitas pada sampul terlebih dahulu.",true); 
+        return; 
+      }
+      control.disabled = true;
+      const original = control.textContent;
+      control.textContent = "Menyimpan…";
+
+      sendToGoogleSheets({...payload, completed: complete});
+      
+      setTimeout(() => {
+        setStatus(statusId,"Draf tersimpan.");
+        control.disabled = false;
+        control.textContent = original;
+        if(nextPage) showPage(nextPage);
+      }, 300);
+    }
+
+    function openProfile(){
+      const data=currentRecord || profileValues();
+      $("#profileNama").value=data.nama_siswa||"";
+      $("#profileKelas").value=data.kelas||"";
+      $("#profileAbsen").value=data.no_absen||"";
+      $("#profileTanggal").value=data.tanggal||"";
+      $("#profileNote").textContent="";
+      $("#profileModal").classList.add("show");
+    }
+
+    function updateProfile(button){
+      const changes={
+        nama_siswa:$("#profileNama").value.trim(),
+        kelas:$("#profileKelas").value.trim(),
+        no_absen:$("#profileAbsen").value.trim(),
+        tanggal:$("#profileTanggal").value
+      };
+      if(!validIdentity(changes)){ $("#profileNote").textContent="Nama siswa dan kelas wajib diisi."; return; }
+      
+      $("#namaSiswa").value=changes.nama_siswa;
+      $("#kelasSiswa").value=changes.kelas;
+      $("#absenSiswa").value=changes.no_absen;
+      $("#tanggalSiswa").value=changes.tanggal;
+      currentRecord = {...changes};
+      
+      updateGreeting();
+      sendToGoogleSheets(currentData());
+      $("#profileModal").classList.remove("show");
+    }
+
+    document.querySelectorAll("[data-go]").forEach(button=>button.addEventListener("click",()=>showPage(button.dataset.go)));
+    ["namaSiswa","kelasSiswa","absenSiswa","tanggalSiswa"].forEach(id=>$("#"+id).addEventListener("input",()=>{updateGreeting();}));
+    document.querySelectorAll("[data-field]").forEach(element=>element.addEventListener("input",progress));
+    
+    $("#startButton").addEventListener("click",event=>saveIdentity(event.currentTarget));
+    $("#savePredict").addEventListener("click",event=>save(event.currentTarget,"#predictStatus","observe"));
+    $("#saveObserve").addEventListener("click",event=>save(event.currentTarget,"#observeStatus","explain"));
+    $("#saveExplain").addEventListener("click",event=>save(event.currentTarget,"#explainStatus","verdict"));
+    $("#saveVerdict").addEventListener("click",event=>save(event.currentTarget,"#verdictStatus","closing",true));
+    
+    $("#openDriveFolder").addEventListener("click", () => {
+      window.open(DRIVE_FOLDER_URL, "_blank", "noopener,noreferrer");
+    });
+
+    $("#profileButton").addEventListener("click",openProfile);
+    $("#cancelProfile").addEventListener("click",()=>$("#profileModal").classList.remove("show"));
+    $("#saveProfile").addEventListener("click",event=>updateProfile(event.currentTarget));
+
+    document.addEventListener("DOMContentLoaded",()=>{
+      if(window.lucide) lucide.createIcons();
+      progress();
+    });
+  </script>
+</body>
+</html>
