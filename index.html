@@ -46,7 +46,6 @@
     
     @keyframes pulseMag{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
     @keyframes floatSymbol{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-
     .secret-folder{display:inline-block;background:var(--gold);color:var(--navy);padding:7px 18px;font:700 .82rem "Courier Prime",monospace;clip-path:polygon(0 0,100% 0,94% 50%,100% 100%,0 100%,6% 50%);margin-bottom:4mm}
     .case-title{margin:0;font:700 clamp(2.3rem,6vw,4.5rem)/.9 "Courier Prime",monospace;letter-spacing:.04em}
     .case-sub{max-width:125mm;margin:5mm auto;color:#f7edd9;font-size:clamp(1rem,2.2vw,1.2rem);font-weight:700}
@@ -73,7 +72,7 @@
     .step-icon{display:grid;place-items:center;width:37px;height:37px;border-radius:50%;background:var(--navy);color:var(--gold);font-weight:900;margin-bottom:8px}
     .mission{margin-top:13px}
     .mission h2{margin:0 0 9px;color:var(--navy);font:700 1rem "Courier Prime",monospace}
-    .inline-input{display:inline-block!important;width:auto!important;min-width:105px;padding:6px 8px!important;margin:0 3px}
+    .inline-input{display:inline-block!important;width:auto!important;min-width:75px;padding:6px 8px!important;margin:0 3px}
     .save-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
     .seal{padding:7px;color:var(--red);border:3px solid var(--red);font:700 .82rem "Courier Prime",monospace;transform:rotate(-8deg)}
     .status{display:inline-block;min-height:18px;color:var(--green);font-size:.84rem;font-weight:900}.error{color:var(--red)!important}
@@ -83,7 +82,6 @@
     /* EMBEDDED IFRAME STYLES */
     .embed-container{width:100%;height:520px;border:3px solid var(--gold);border-radius:12px;overflow:hidden;background:#fff;margin-top:12px;box-shadow:0 8px 20px rgba(0,0,0,0.25)}
     .embed-container iframe{width:100%;height:100%;border:0}
-
     .inspector{display:flex;gap:16px;align-items:center;padding:15px;background:#17273d;color:#fff;border-radius:13px}
     .detective{width:105px;min-width:105px;height:120px;position:relative}.hat{position:absolute;top:8px;left:4px;width:97px;height:23px;border-bottom:4px solid var(--gold);background:#28394d;border-radius:100% 100% 10px 10px}.face{position:absolute;top:28px;left:20px;width:70px;height:75px;background:#c78c67;border-radius:45%}.eye{position:absolute;top:28px;width:7px;height:7px;border-radius:50%;background:#182432}.eye.a{left:20px}.eye.b{right:20px}.moustache{position:absolute;left:14px;top:48px;width:40px;height:11px;background:#472c21;border-radius:50%}.coat{position:absolute;bottom:0;left:5px;width:96px;height:38px;border-radius:24px 24px 0 0;background:#324c68}
     .bubble{padding:12px;background:#fffdf7;color:var(--navy);border-radius:10px;font:700 .92rem "Courier Prime",monospace}
@@ -110,33 +108,31 @@
     <section id="cover" class="page active">
      <div class="canva-panel cover-sheet" style="background: linear-gradient(135deg, rgb(16, 29, 48), rgb(27, 42, 65));">
       <div class="cover-inner">
-       
-       <!-- ANIMASI KACA PEMBESAR DETEKTIF -->
-       <div class="magnifier-container">
+        
+        <!-- ANIMASI KACA PEMBESAR DETEKTIF -->
+        <div class="magnifier-container">
          <div class="magnifier-glass">
            <span class="magnifier-symbol">√x</span>
          </div>
-       </div>
-
-       <div class="secret-folder">BERKAS KASUS • RAHASIA</div>
-       <h1 class="case-title">DETEKTIF AKAR</h1>
-       <p class="case-sub">Kasus Dua Bukti Kembar: Persamaan &amp; Fungsi Irasional</p>
-       <div class="identity-card">
-        <h2>IDENTITAS AGEN DETEKTIF</h2>
-        <div class="identity-grid">
-         <div><label for="namaSiswa">Nama siswa <span class="required">*</span></label><input id="namaSiswa" type="text" placeholder="Contoh: Siti Nurhaliza"></div>
-         <div><label for="kelasSiswa">Kelas <span class="required">*</span></label><input id="kelasSiswa" type="text" placeholder="Contoh: X-A"></div>
-         <div><label for="absenSiswa">No. Absen</label><input id="absenSiswa" type="text" placeholder="Contoh: 12"></div>
-         <div><label for="tanggalSiswa">Tanggal</label><input id="tanggalSiswa" type="date"></div>
         </div>
-        <p id="identityNote" class="form-note"></p><button id="startButton" class="cta w-full mt-2" type="button">Mulai Penyelidikan</button>
-       </div>
-       <p class="author">Disusun oleh: Agnia Futri Amalia</p>
-       <p class="institution">Program Studi Pendidikan Matematika, FKIP, Universitas Islam Nusantara</p>
+        <div class="secret-folder">BERKAS KASUS • RAHASIA</div>
+        <h1 class="case-title">DETEKTIF AKAR</h1>
+        <p class="case-sub">Kasus Dua Bukti Kembar: Persamaan &amp; Fungsi Irasional</p>
+        <div class="identity-card">
+         <h2>IDENTITAS AGEN DETEKTIF</h2>
+         <div class="identity-grid">
+          <div><label for="namaSiswa">Nama siswa <span class="required">*</span></label><input id="namaSiswa" type="text" placeholder="Contoh: Siti Nurhaliza"></div>
+          <div><label for="kelasSiswa">Kelas <span class="required">*</span></label><input id="kelasSiswa" type="text" placeholder="Contoh: X-A"></div>
+          <div><label for="absenSiswa">No. Absen</label><input id="absenSiswa" type="text" placeholder="Contoh: 12"></div>
+          <div><label for="tanggalSiswa">Tanggal</label><input id="tanggalSiswa" type="date"></div>
+         </div>
+         <p id="identityNote" class="form-note"></p><button id="startButton" class="cta w-full mt-2" type="button">Mulai Penyelidikan</button>
+        </div>
+        <p class="author">Disusun oleh: Agnia Futri Amalia</p>
+        <p class="institution">Program Studi Pendidikan Matematika, FKIP, Universitas Islam Nusantara</p>
       </div>
      </div>
     </section>
-
     <!-- PETUNJUK -->
     <section id="guide" class="page">
      <div class="a4-sheet">
@@ -144,40 +140,38 @@
       <h1 class="page-title">Petunjuk Penyelidikan</h1>
       
       <div class="grid2 gap-6 mt-4">
-       <div>
-        <h2 class="section-title text-[#1B2A41]">Langkah Investigasi (POE)</h2>
-        <div class="space-y-3">
-         <article class="step flex gap-3 items-start p-3 bg-[#fffaf0] border border-[#d7c5a7] rounded-lg">
-          <div class="step-icon shrink-0">1</div>
-          <div><h3 class="font-bold text-[#1B2A41] m-0">Pengintaian (Predict)</h3><p class="text-sm m-0 text-slate-700">Analisis syarat domain dan buat sketsa grafik fungsi secara manual.</p></div>
-         </article>
-         <article class="step flex gap-3 items-start p-3 bg-[#fffaf0] border border-[#d7c5a7] rounded-lg">
-          <div class="step-icon shrink-0">2</div>
-          <div><h3 class="font-bold text-[#1B2A41] m-0">Olah TKP (Observe)</h3><p class="text-sm m-0 text-slate-700">Eksplorasi grafik digital interaktif GeoGebra langsung di LKPD.</p></div>
-         </article>
-         <article class="step flex gap-3 items-start p-3 bg-[#fffaf0] border border-[#d7c5a7] rounded-lg">
-          <div class="step-icon shrink-0">3</div>
-          <div><h3 class="font-bold text-[#1B2A41] m-0">Interogasi (Explain)</h3><p class="text-sm m-0 text-slate-700">Diskusi Sokratik bersama AI Inspektur Akar &amp; susun Lembar Putusan.</p></div>
-         </article>
-        </div>
-       </div>
-
-       <aside class="goal bg-[#fffaf0] border border-[#d7c5a7] rounded-lg p-5 flex flex-col justify-between">
         <div>
-         <h2 class="section-title text-[#1B2A41]">Tujuan Misi Utama</h2>
-         <ol class="space-y-2 pl-5 list-decimal text-sm font-semibold text-slate-800">
-          <li>Menganalisis irisan domain syarat bentuk akar.</li>
-          <li>Melukis grafik fungsi irasional manual di kertas berpetak.</li>
-          <li>Memverifikasi perpotongan grafik di laboratorium GeoGebra.</li>
-          <li>Menyimpulkan akar sah bersama Inspektur Akar (AI).</li>
-         </ol>
+         <h2 class="section-title text-[#1B2A41]">Langkah Investigasi (POE)</h2>
+         <div class="space-y-3">
+          <article class="step flex gap-3 items-start p-3 bg-[#fffaf0] border border-[#d7c5a7] rounded-lg">
+           <div class="step-icon shrink-0">1</div>
+           <div><h3 class="font-bold text-[#1B2A41] m-0">Pengintaian (Predict)</h3><p class="text-sm m-0 text-slate-700">Analisis syarat domain dan buat sketsa grafik fungsi secara manual.</p></div>
+          </article>
+          <article class="step flex gap-3 items-start p-3 bg-[#fffaf0] border border-[#d7c5a7] rounded-lg">
+           <div class="step-icon shrink-0">2</div>
+           <div><h3 class="font-bold text-[#1B2A41] m-0">Olah TKP (Observe)</h3><p class="text-sm m-0 text-slate-700">Eksplorasi grafik digital interaktif GeoGebra langsung di LKPD.</p></div>
+          </article>
+          <article class="step flex gap-3 items-start p-3 bg-[#fffaf0] border border-[#d7c5a7] rounded-lg">
+           <div class="step-icon shrink-0">3</div>
+           <div><h3 class="font-bold text-[#1B2A41] m-0">Interogasi (Explain)</h3><p class="text-sm m-0 text-slate-700">Diskusi Sokratik bersama AI Inspektur Akar &amp; susun Lembar Putusan.</p></div>
+          </article>
+         </div>
         </div>
-        <button class="cta w-full mt-6" data-go="predict" type="button">Mulai Tahap Predict →</button>
-       </aside>
+        <aside class="goal bg-[#fffaf0] border border-[#d7c5a7] rounded-lg p-5 flex flex-col justify-between">
+         <div>
+          <h2 class="section-title text-[#1B2A41]">Tujuan Misi Utama</h2>
+          <ol class="space-y-2 pl-5 list-decimal text-sm font-semibold text-slate-800">
+           <li>Menganalisis irisan domain syarat bentuk akar.</li>
+           <li>Melukis grafik fungsi irasional manual di kertas berpetak.</li>
+           <li>Memverifikasi perpotongan grafik di laboratorium GeoGebra.</li>
+           <li>Menyimpulkan akar sah bersama Inspektur Akar (AI).</li>
+          </ol>
+         </div>
+         <button class="cta w-full mt-6" data-go="predict" type="button">Mulai Tahap Predict →</button>
+        </aside>
       </div>
      </div>
     </section>
-
     <!-- TAHAP 1: PREDICT -->
     <section id="predict" class="page">
      <div class="a4-sheet">
@@ -188,13 +182,12 @@
        <div class="text-center font-bold text-2xl my-3 type">√(x² − 4) = √(x + 2)</div>
        <p class="leading-relaxed text-sm">🕵️ Terjadi duplikasi bukti! Dua ekspresi akar kuadrat ditemukan bernilai sama. Tugasmu, Agen: analisis syarat keamanan, lukis kurva fungsinya secara manual, dan rumuskan dugaan titik potong sebelum membuka GeoGebra!</p>
       </div>
-
       <article class="mission">
        <h2>Misi 1: Pemeriksaan Syarat &amp; Analisis Aljabar</h2>
        <label>a. Syarat Terdefinisi (Domain Pertidaksamaan):</label>
-       <p class="text-sm">Syarat Akar 1: x² − 4 ≥ 0 ⇒ (x − 2)(x + 2) ≥ 0 ⇒ x ≤ <input id="misi1a_syarat1_a" data-field="misi1a_syarat1" class="inline-input" type="text"> atau x ≥ <input class="inline-input" type="text"></p>
+       <p class="text-sm">Syarat Akar 1: x² − 4 ≥ 0 ⇒ (x − 2)(x + 2) ≥ 0 ⇒ x ≤ <input id="misi1a_syarat1" data-field="misi1a_syarat1" class="inline-input" type="text"> atau x ≥ <input id="misi1a_syarat1_b" data-field="misi1a_syarat1_b" class="inline-input" type="text"></p>
        <p class="text-sm mt-2">Syarat Akar 2: x + 2 ≥ 0 ⇒ x ≥ <input id="misi1a_syarat2" data-field="misi1a_syarat2" class="inline-input" type="text"></p>
-       <p class="text-sm mt-2 font-bold">Irisan Syarat Keseluruhan (Daerah Valid x): x = <input id="misi1a_irisan" data-field="misi1a_irisan" class="inline-input" type="text"> atau x ≥ <input class="inline-input" type="text"></p>
+       <p class="text-sm mt-2 font-bold">Irisan Syarat Keseluruhan (Daerah Valid x): x = <input id="misi1a_irisan" data-field="misi1a_irisan" class="inline-input" type="text"> atau x ≥ <input id="misi1a_irisan_b" data-field="misi1a_irisan_b" class="inline-input" type="text"></p>
        
        <label class="mt-4">b. Perburuan Tersangka (Penyelesaian Aljabar):</label>
        <p class="text-sm">Kuadratkan kedua ruas: x² − 4 = <input id="misi1b_kuadrat" data-field="misi1b_kuadrat" class="inline-input" type="text"></p>
@@ -202,7 +195,6 @@
        <p class="text-sm mt-1">Faktorkan: (x − <input id="misi1b_faktor" data-field="misi1b_faktor" class="inline-input" type="text">)(x + ...) = 0</p>
        <p class="text-sm mt-1 font-bold">Calon Tersangka: x = <input id="misi1b_tersangka" data-field="misi1b_tersangka" class="inline-input" type="text"> atau x = <input id="misi1b_tersangka2" data-field="misi1b_tersangka2" class="inline-input" type="text"></p>
       </article>
-
       <article class="mission">
        <h2>Misi 2: Melukis Bukti (Aktivitas Menggambar)</h2>
        <p class="text-sm mb-3">Gambarlah grafik fungsi <strong>y₁ = √(x² − 4)</strong> dan <strong>y₂ = √(x + 2)</strong> pada kertas berpetak / Canva sesuai tabel titik bantu di petunjuk. Setelah selesai menggambar, unggah/simpan foto hasil pekerjanmu ke folder Google Drive berikut:</p>
@@ -216,7 +208,6 @@
         </div>
        </div>
       </article>
-
       <article class="mission">
        <h2>Misi 3: Rumuskan Dugaan Titik Potong</h2>
        <p class="font-bold text-sm">Berdasarkan sketsa grafik manual yang telah kamu buat:</p>
@@ -227,14 +218,12 @@
        <label class="mt-2">c. Apakah tersangka hasil aljabar (x = 3 dan x = -2) cocok dengan titik potong pada grafikmu?</label>
        <select id="misi3_cocok" data-field="misi3_cocok"><option value="">Pilih</option><option>Ya</option><option>Tidak</option></select>
       </article>
-
       <div class="save-row">
        <span class="seal">KUNCI DUGAAN</span>
        <div><span id="predictStatus" class="status mr-2"></span><button id="savePredict" class="cta" type="button">Kunci Dugaan &amp; Lanjut ke Olah TKP GeoGebra</button></div>
       </div>
      </div>
     </section>
-
     <!-- TAHAP 2: OBSERVE -->
     <section id="observe" class="page">
      <div class="a4-sheet lab-sheet">
@@ -246,7 +235,6 @@
       <div class="embed-container">
         <iframe src="https://www.geogebra.org/calculator/drg2nq7s?embed" title="Laboratorium GeoGebra Interaktif" allowfullscreen></iframe>
       </div>
-
       <article class="mission mt-4">
        <h2>Misi 4: Verifikasi &amp; Eksplorasi Slider</h2>
        <p class="text-sm">Amati kurva <strong>y₁ = √(x² − 4)</strong> (Warna Merah) dan kurva <strong>y₂ = √(x + 2)</strong> (Warna Biru). Geser Slider a ke koordinat tersangka:</p>
@@ -270,14 +258,12 @@
         <input id="misi4_titikB" data-field="misi4_titikB" type="text" placeholder="Titik B = (..., ...)">
        </div>
       </article>
-
       <div class="save-row">
        <button class="secondary" data-go="predict" type="button">← Sebelumnya</button>
        <div><span id="observeStatus" class="status mr-2"></span><button id="saveObserve" class="cta" type="button">Simpan Bukti &amp; Lanjut →</button></div>
       </div>
      </div>
     </section>
-
     <!-- TAHAP 3: EXPLAIN -->
     <section id="explain" class="page">
      <div class="a4-sheet">
@@ -290,12 +276,10 @@
         <div class="bubble">Aku hanya bertanya, kamulah yang menemukan jawabannya. Mulai percakapan pada jendela obrolan di bawah ini!</div>
        </div>
       </div>
-
       <!-- EMBEDDED CHATBOT AI BOTPRESS -->
       <div class="embed-container" style="height:550px;">
         <iframe src="https://cdn.botpress.cloud/webchat/v5.0/shareable.html?configUrl=https://files.bpcontent.cloud/2026/10/07/06/20261007062343-KC46QV6R.json" title="Chatbot Inspektur Akar" allow="microphone"></iframe>
       </div>
-
       <article class="mission mt-4">
        <h2>Misi 5: Diskusi Sokratik bersama AI</h2>
        <p class="text-sm">Buka chat, diskusikan kenapa x = -2 dan x = 3 keduanya merupakan penyelesaian yang sah. Tuliskan 3 poin penting hasil diskusimu:</p>
@@ -305,14 +289,12 @@
         <div><label>Kesimpulan 3</label><textarea id="misi5_diskusi3" data-field="misi5_diskusi3"></textarea></div>
        </div>
       </article>
-
       <div class="save-row">
        <button class="secondary" data-go="observe" type="button">← Sebelumnya</button>
        <div><span id="explainStatus" class="status mr-2"></span><button id="saveExplain" class="cta" type="button">Lanjut ke Lembar Putusan →</button></div>
       </div>
      </div>
     </section>
-
     <!-- LEMBAR PUTUSAN -->
     <section id="verdict" class="page">
      <div class="a4-sheet">
@@ -329,7 +311,6 @@
        
        <label for="misi6_hp" class="mt-3">3. Kesimpulan Himpunan Penyelesaian (HP):</label>
        <input id="misi6_hp" data-field="misi6_hp" type="text" placeholder="HP = {-2, 3}">
-
        <div class="grid2 mt-4">
         <div>
          <label for="misi6_refleksi">Refleksi: Dugaan Awalku</label>
@@ -341,14 +322,12 @@
         </div>
        </div>
       </article>
-
       <div class="save-row">
        <button class="secondary" data-go="explain" type="button">← Kembali ke Explain</button>
        <div><span id="verdictStatus" class="status mr-2"></span><button id="saveVerdict" class="cta" type="button">Simpan Lembar Putusan</button></div>
       </div>
      </div>
     </section>
-
     <!-- PENUTUP -->
     <section id="closing" class="page">
      <div class="a4-sheet text-center">
@@ -370,7 +349,6 @@
     </section>
    </main>
   </div>
-
   <!-- MODAL PROFILE -->
   <div id="profileModal" class="modal">
    <div class="modal-box">
@@ -388,14 +366,12 @@
     </div>
    </div>
   </div>
-
   <script>
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw01ZF4NQMKAY2SC9WWk-0A3gS5NQofjCJjEpLbW8OuuIK3aSohQU5rpIt-BbDG9YJ4tw/exec";
     const DRIVE_FOLDER_URL = "https://drive.google.com/drive/folders/1ExtSC8PxRCGqAC-wNKRRZr6cbxlBkDLQ?usp=sharing"; 
-
     let currentRecord = null, activePage = "cover";
     const $ = selector => document.querySelector(selector);
-
+    
     function profileValues(){
       return {
         nama_siswa: $("#namaSiswa").value.trim(),
@@ -404,29 +380,31 @@
         tanggal: $("#tanggalSiswa").value
       };
     }
-
+    
     function validIdentity(data){ 
       return Boolean(data.nama_siswa && data.kelas); 
     }
-
+    
     function updateGreeting(){
       const name = currentRecord?.nama_siswa || $("#namaSiswa").value.trim();
       const kelas = currentRecord?.kelas || $("#kelasSiswa").value.trim();
       $("#agentGreeting").textContent = name ? `Agen Detektif: ${name}${kelas ? " • " + kelas : ""}` : "Agen Detektif";
     }
-
+    
     function currentData(){
       const data = {...(currentRecord || {}), ...profileValues()};
-      document.querySelectorAll("[data-field]").forEach(el => {
-        const key = el.dataset.field;
-        if(el.type === "radio"){ if(el.checked) data[key] = el.value; }
-        else data[key] = el.value;
+      document.querySelectorAll("input, select, textarea").forEach(el => {
+        const key = el.dataset.field || el.id;
+        if(key) {
+          if(el.type === "radio"){ if(el.checked) data[key] = el.value; }
+          else data[key] = el.value;
+        }
       });
       data.last_page = activePage;
       data.updated_at = new Date().toISOString();
       return data;
     }
-
+    
     function progress(){
       const data = currentData();
       const core = ["misi1a_syarat1","misi1a_syarat2","misi1a_irisan","misi1b_kuadrat","misi1b_persamaan","misi1b_tersangka","misi3_jml_potong","misi4_xneg2_val","misi4_x3_val","misi5_diskusi1","misi5_diskusi2","misi6_alasan_sah","misi6_hp"];
@@ -436,16 +414,8 @@
       $("#progressText").textContent = percent + "%";
       $("#closingBar").style.width = percent + "%";
       $("#closingProgress").textContent = `${count} dari ${core.length} bukti utama telah dicatat (${percent}%).`;
-
-      // Penguncian Tombol Lanjut Tahap 1 jika belum lengkap
-      const predictFields = ["misi1a_syarat1","misi1a_syarat2","misi1a_irisan","misi1b_kuadrat","misi1b_persamaan","misi1b_faktor","misi1b_tersangka","misi3_jml_potong","misi3_koordinat","misi3_cocok"];
-      const predictComplete = predictFields.every(field => String(data[field] || "").trim() !== "");
-      const savePredictBtn = $("#savePredict");
-      if(savePredictBtn){
-        savePredictBtn.disabled = !predictComplete;
-      }
     }
-
+    
     function showPage(id){
       if(id !== "cover" && !validIdentity(profileValues())) { 
         showPage("cover"); 
@@ -458,7 +428,7 @@
       window.scrollTo({top:0,behavior:"smooth"});
       progress();
     }
-
+    
     function setStatus(id, message, bad=false){ 
       const el=$(id); 
       if(el) {
@@ -466,7 +436,7 @@
         el.classList.toggle("error",bad); 
       }
     }
-
+    
     async function sendToGoogleSheets(data){
       if(GOOGLE_SCRIPT_URL){
         try {
@@ -481,7 +451,7 @@
         }
       }
     }
-
+    
     async function saveIdentity(control){
       const data = profileValues();
       if(!validIdentity(data)){
@@ -496,7 +466,6 @@
       currentRecord = {...data};
       updateGreeting();
       sendToGoogleSheets(currentData());
-
       setTimeout(() => {
         $("#identityNote").textContent = "";
         $("#appHeader").classList.remove("hidden");
@@ -505,7 +474,7 @@
         control.textContent = original;
       }, 300);
     }
-
+    
     async function save(control, statusId, nextPage, complete=false){
       const payload = currentData();
       if(!validIdentity(payload)){ 
@@ -516,7 +485,6 @@
       control.disabled = true;
       const original = control.textContent;
       control.textContent = "Menyimpan…";
-
       sendToGoogleSheets({...payload, completed: complete});
       
       setTimeout(() => {
@@ -526,7 +494,7 @@
         if(nextPage) showPage(nextPage);
       }, 300);
     }
-
+    
     function openProfile(){
       const data=currentRecord || profileValues();
       $("#profileNama").value=data.nama_siswa||"";
@@ -536,7 +504,7 @@
       $("#profileNote").textContent="";
       $("#profileModal").classList.add("show");
     }
-
+    
     function updateProfile(button){
       const changes={
         nama_siswa:$("#profileNama").value.trim(),
@@ -556,10 +524,10 @@
       sendToGoogleSheets(currentData());
       $("#profileModal").classList.remove("show");
     }
-
+    
     document.querySelectorAll("[data-go]").forEach(button=>button.addEventListener("click",()=>showPage(button.dataset.go)));
     ["namaSiswa","kelasSiswa","absenSiswa","tanggalSiswa"].forEach(id=>$("#"+id).addEventListener("input",()=>{updateGreeting();}));
-    document.querySelectorAll("[data-field]").forEach(element=>element.addEventListener("input",progress));
+    document.querySelectorAll("input, select, textarea").forEach(element=>element.addEventListener("input",progress));
     
     $("#startButton").addEventListener("click",event=>saveIdentity(event.currentTarget));
     $("#savePredict").addEventListener("click",event=>save(event.currentTarget,"#predictStatus","observe"));
@@ -570,11 +538,9 @@
     $("#openDriveFolder").addEventListener("click", () => {
       window.open(DRIVE_FOLDER_URL, "_blank", "noopener,noreferrer");
     });
-
     $("#profileButton").addEventListener("click",openProfile);
     $("#cancelProfile").addEventListener("click",()=>$("#profileModal").classList.remove("show"));
     $("#saveProfile").addEventListener("click",event=>updateProfile(event.currentTarget));
-
     document.addEventListener("DOMContentLoaded",()=>{
       if(window.lucide) lucide.createIcons();
       progress();
