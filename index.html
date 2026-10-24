@@ -28,6 +28,7 @@
     .nav-list{padding:0 14px 10px;display:flex;gap:7px;overflow:auto}
     .nav-list button{white-space:nowrap;border:1px solid #ffffff3b;border-radius:999px;background:transparent;color:#e7edf3;padding:6px 10px;font-weight:800;font-size:.76rem}
     .nav-list button.active{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+    .nav-list button:disabled{opacity:0.4;cursor:not-allowed}
     main{width:100%;max-width:220mm;min-height:297mm;margin:0 auto;padding:12mm}
     .page{display:none;animation:enter .35s ease both}
     .page.active{display:block}
@@ -37,13 +38,10 @@
     .a4-sheet>*{position:relative;z-index:1}
     .cover-sheet{min-height:273mm;background:linear-gradient(135deg,#101d30,#1B2A41 65%,#314c6a);border:0;color:#fff;overflow:hidden;display:grid;place-items:center;text-align:center;padding:15mm;position:relative}
     .cover-inner{width:min(100%,150mm);position:relative;z-index:1}
-    
-    /* ANIMASI KACA PEMBESAR DETEKTIF */
     .magnifier-container{width:90px;height:90px;margin:0 auto 15px;position:relative;display:grid;place-items:center}
     .magnifier-glass{width:65px;height:65px;border:5px solid var(--gold);border-radius:50%;background:rgba(224,165,38,0.15);box-shadow:0 0 15px rgba(224,165,38,0.4),inset 0 0 10px rgba(255,255,255,0.3);position:relative;display:grid;place-items:center;animation:pulseMag 2.5s infinite ease-in-out}
     .magnifier-glass:after{content:"";position:absolute;width:12px;height:32px;background:var(--gold);bottom:-22px;right:-14px;transform:rotate(-45deg);border-radius:0 0 5px 5px;box-shadow:2px 2px 5px rgba(0,0,0,0.5)}
     .magnifier-symbol{font-family:"Courier Prime",monospace;font-size:2rem;font-weight:700;color:var(--gold);animation:floatSymbol 2.5s infinite ease-in-out}
-    
     @keyframes pulseMag{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
     @keyframes floatSymbol{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
     .secret-folder{display:inline-block;background:var(--gold);color:var(--navy);padding:7px 18px;font:700 .82rem "Courier Prime",monospace;clip-path:polygon(0 0,100% 0,94% 50%,100% 100%,0 100%,6% 50%);margin-bottom:4mm}
@@ -67,7 +65,6 @@
     .page-title{margin:0 0 12px;color:var(--navy);font:700 clamp(1.7rem,4vw,2.4rem)/1 "Courier Prime",monospace}
     .section-title{margin:0 0 10px;color:var(--navy);font:700 1.05rem "Courier Prime",monospace}
     .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
     .step,.goal,.mission,.lab-card{background:#fffaf0;border:1px solid #d7c5a7;border-radius:11px;padding:14px}
     .step-icon{display:grid;place-items:center;width:37px;height:37px;border-radius:50%;background:var(--navy);color:var(--gold);font-weight:900;margin-bottom:8px}
     .mission{margin-top:13px}
@@ -78,18 +75,30 @@
     .status{display:inline-block;min-height:18px;color:var(--green);font-size:.84rem;font-weight:900}.error{color:var(--red)!important}
     .lab-sheet{background:linear-gradient(145deg,#101b2a,#213d5d);color:#eff7ff}
     .lab-sheet .page-title{color:#ffe29a}.lab-sheet .mission,.lab-sheet .lab-card{color:var(--ink)}.lab-sheet .ribbon{color:var(--navy)}
-    
-    /* EMBEDDED IFRAME STYLES */
     .embed-container{width:100%;height:520px;border:3px solid var(--gold);border-radius:12px;overflow:hidden;background:#fff;margin-top:12px;box-shadow:0 8px 20px rgba(0,0,0,0.25)}
     .embed-container iframe{width:100%;height:100%;border:0}
     .inspector{display:flex;gap:16px;align-items:center;padding:15px;background:#17273d;color:#fff;border-radius:13px}
     .detective{width:105px;min-width:105px;height:120px;position:relative}.hat{position:absolute;top:8px;left:4px;width:97px;height:23px;border-bottom:4px solid var(--gold);background:#28394d;border-radius:100% 100% 10px 10px}.face{position:absolute;top:28px;left:20px;width:70px;height:75px;background:#c78c67;border-radius:45%}.eye{position:absolute;top:28px;width:7px;height:7px;border-radius:50%;background:#182432}.eye.a{left:20px}.eye.b{right:20px}.moustache{position:absolute;left:14px;top:48px;width:40px;height:11px;background:#472c21;border-radius:50%}.coat{position:absolute;bottom:0;left:5px;width:96px;height:38px;border-radius:24px 24px 0 0;background:#324c68}
     .bubble{padding:12px;background:#fffdf7;color:var(--navy);border-radius:10px;font:700 .92rem "Courier Prime",monospace}
     .modal{position:fixed;z-index:100;inset:0;display:none;place-items:center;padding:18px;background:#101d30b8}.modal.show{display:grid}.modal-box{width:min(100%,470px);padding:22px;border-radius:14px;background:#fffdf7;box-shadow:0 20px 50px #0008}.modal-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .score-box{background:#1B2A41;color:#FFF;border:3px solid var(--gold);border-radius:12px;padding:20px;margin-top:20px;text-align:center}
+    .score-title{font:700 1.1rem "Courier Prime",monospace;color:var(--gold)}
+    .score-num{font-size:3rem;font-weight:900;color:#FFF;margin:10px 0}
     .hidden{display:none!important}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  
+  <!-- MathJax untuk Render Simbol Matematika Mulus -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body data-template-id="__page-root" style="background: rgb(245, 235, 215);">
   <div class="app-shell">
@@ -101,15 +110,21 @@
       <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div><span id="progressText">0%</span>
      </div><button id="profileButton" class="profile-btn" type="button"><i data-lucide="user-round-pen" width="14"></i> Profil</button>
     </div>
-    <nav class="nav-list"><button type="button" data-go="cover">Sampul</button> <button type="button" data-go="guide">Petunjuk</button> <button type="button" data-go="predict">Predict</button> <button type="button" data-go="observe">Observe</button> <button type="button" data-go="explain">Explain</button> <button type="button" data-go="verdict">Putusan</button> <button type="button" data-go="closing">Penutup</button></nav>
+    <nav class="nav-list">
+      <button type="button" data-go="cover">Sampul</button> 
+      <button type="button" data-go="guide">Petunjuk</button> 
+      <button type="button" data-go="predict" id="navPredict">Predict</button> 
+      <button type="button" data-go="observe" id="navObserve" disabled>Observe 🔒</button> 
+      <button type="button" data-go="explain" id="navExplain" disabled>Explain 🔒</button> 
+      <button type="button" data-go="verdict" id="navVerdict" disabled>Putusan 🔒</button> 
+      <button type="button" data-go="closing" id="navClosing" disabled>Penutup 🔒</button>
+    </nav>
    </header>
    <main>
     <!-- SAMPUL -->
     <section id="cover" class="page active">
      <div class="canva-panel cover-sheet" style="background: linear-gradient(135deg, rgb(16, 29, 48), rgb(27, 42, 65));">
       <div class="cover-inner">
-        
-        <!-- ANIMASI KACA PEMBESAR DETEKTIF -->
         <div class="magnifier-container">
          <div class="magnifier-glass">
            <span class="magnifier-symbol">√x</span>
@@ -133,6 +148,7 @@
       </div>
      </div>
     </section>
+
     <!-- PETUNJUK -->
     <section id="guide" class="page">
      <div class="a4-sheet">
@@ -153,7 +169,7 @@
           </article>
           <article class="step flex gap-3 items-start p-3 bg-[#fffaf0] border border-[#d7c5a7] rounded-lg">
            <div class="step-icon shrink-0">3</div>
-           <div><h3 class="font-bold text-[#1B2A41] m-0">Interogasi (Explain)</h3><p class="text-sm m-0 text-slate-700">Diskusi Sokratik bersama AI Inspektur Akar &amp; susun Lembar Putusan.</p></div>
+           <div><h3 class="font-bold text-[#1B2A41] m-0">Interogasi &amp; Materi (Explain)</h3><p class="text-sm m-0 text-slate-700">Pelajari Modul Konsep Formal, diskusi bersama AI &amp; susun kesimpulan pembanding.</p></div>
           </article>
          </div>
         </div>
@@ -164,7 +180,7 @@
            <li>Menganalisis irisan domain syarat bentuk akar.</li>
            <li>Melukis grafik fungsi irasional manual di kertas berpetak.</li>
            <li>Memverifikasi perpotongan grafik di laboratorium GeoGebra.</li>
-           <li>Menyimpulkan akar sah bersama Inspektur Akar (AI).</li>
+           <li>Membandingkan pemahaman awal dengan Materi Konsep Formal &amp; AI.</li>
           </ol>
          </div>
          <button class="cta w-full mt-6" data-go="predict" type="button">Mulai Tahap Predict →</button>
@@ -172,6 +188,7 @@
       </div>
      </div>
     </section>
+
     <!-- TAHAP 1: PREDICT -->
     <section id="predict" class="page">
      <div class="a4-sheet">
@@ -179,25 +196,25 @@
       <h1 class="page-title">Pengintaian &amp; Melukis Bukti</h1>
       <div class="mission border-2 border-[#1B2A41] bg-[#fffaf0] p-4 rounded-lg">
        <span class="type text-sm font-bold text-[#C0392B]">BARANG BUKTI A &amp; B</span>
-       <div class="text-center font-bold text-2xl my-3 type">√(x² − 4) = √(x + 2)</div>
+       <div class="text-center font-bold text-2xl my-3 type">$$\sqrt{x^2 - 4} = \sqrt{x + 2}$$</div>
        <p class="leading-relaxed text-sm">🕵️ Terjadi duplikasi bukti! Dua ekspresi akar kuadrat ditemukan bernilai sama. Tugasmu, Agen: analisis syarat keamanan, lukis kurva fungsinya secara manual, dan rumuskan dugaan titik potong sebelum membuka GeoGebra!</p>
       </div>
       <article class="mission">
        <h2>Misi 1: Pemeriksaan Syarat &amp; Analisis Aljabar</h2>
        <label>a. Syarat Terdefinisi (Domain Pertidaksamaan):</label>
-       <p class="text-sm">Syarat Akar 1: x² − 4 ≥ 0 ⇒ (x − 2)(x + 2) ≥ 0 ⇒ x ≤ <input id="misi1a_syarat1" data-field="misi1a_syarat1" class="inline-input" type="text"> atau x ≥ <input id="misi1a_syarat1_b" data-field="misi1a_syarat1_b" class="inline-input" type="text"></p>
-       <p class="text-sm mt-2">Syarat Akar 2: x + 2 ≥ 0 ⇒ x ≥ <input id="misi1a_syarat2" data-field="misi1a_syarat2" class="inline-input" type="text"></p>
-       <p class="text-sm mt-2 font-bold">Irisan Syarat Keseluruhan (Daerah Valid x): x = <input id="misi1a_irisan" data-field="misi1a_irisan" class="inline-input" type="text"> atau x ≥ <input id="misi1a_irisan_b" data-field="misi1a_irisan_b" class="inline-input" type="text"></p>
+       <p class="text-sm">Syarat Akar 1: $x^2 - 4 \ge 0 \implies (x - 2)(x + 2) \ge 0 \implies x \le$ <input id="misi1a_syarat1" data-field="misi1a_syarat1" class="inline-input" type="text"> atau $x \ge$ <input id="misi1a_syarat1_b" data-field="misi1a_syarat1_b" class="inline-input" type="text"></p>
+       <p class="text-sm mt-2">Syarat Akar 2: $x + 2 \ge 0 \implies x \ge$ <input id="misi1a_syarat2" data-field="misi1a_syarat2" class="inline-input" type="text"></p>
+       <p class="text-sm mt-2 font-bold">Irisan Syarat Keseluruhan (Daerah Valid x): $x =$ <input id="misi1a_irisan" data-field="misi1a_irisan" class="inline-input" type="text"> atau $x \ge$ <input id="misi1a_irisan_b" data-field="misi1a_irisan_b" class="inline-input" type="text"></p>
        
        <label class="mt-4">b. Perburuan Tersangka (Penyelesaian Aljabar):</label>
-       <p class="text-sm">Kuadratkan kedua ruas: x² − 4 = <input id="misi1b_kuadrat" data-field="misi1b_kuadrat" class="inline-input" type="text"></p>
-       <p class="text-sm mt-1">Persamaan kuadrat baku: x² − x − <input id="misi1b_persamaan" data-field="misi1b_persamaan" class="inline-input" type="text"> = 0</p>
-       <p class="text-sm mt-1">Faktorkan: (x − <input id="misi1b_faktor" data-field="misi1b_faktor" class="inline-input" type="text">)(x + ...) = 0</p>
-       <p class="text-sm mt-1 font-bold">Calon Tersangka: x = <input id="misi1b_tersangka" data-field="misi1b_tersangka" class="inline-input" type="text"> atau x = <input id="misi1b_tersangka2" data-field="misi1b_tersangka2" class="inline-input" type="text"></p>
+       <p class="text-sm">Kuadratkan kedua ruas: $x^2 - 4 =$ <input id="misi1b_kuadrat" data-field="misi1b_kuadrat" class="inline-input" type="text"></p>
+       <p class="text-sm mt-1">Persamaan kuadrat baku: $x^2 - x -$ <input id="misi1b_persamaan" data-field="misi1b_persamaan" class="inline-input" type="text"> $= 0$</p>
+       <p class="text-sm mt-1">Faktorkan: $(x -$ <input id="misi1b_faktor" data-field="misi1b_faktor" class="inline-input" type="text">$)(x + ...) = 0$</p>
+       <p class="text-sm mt-1 font-bold">Calon Tersangka: $x =$ <input id="misi1b_tersangka" data-field="misi1b_tersangka" class="inline-input" type="text"> atau $x =$ <input id="misi1b_tersangka2" data-field="misi1b_tersangka2" class="inline-input" type="text"></p>
       </article>
       <article class="mission">
        <h2>Misi 2: Melukis Bukti (Aktivitas Menggambar)</h2>
-       <p class="text-sm mb-3">Gambarlah grafik fungsi <strong>y₁ = √(x² − 4)</strong> dan <strong>y₂ = √(x + 2)</strong> pada kertas berpetak / Canva sesuai tabel titik bantu di petunjuk. Setelah selesai menggambar, unggah/simpan foto hasil pekerjanmu ke folder Google Drive berikut:</p>
+       <p class="text-sm mb-3">Gambarlah grafik fungsi <strong>$y_1 = \sqrt{x^2 - 4}$</strong> dan <strong>$y_2 = \sqrt{x + 2}$</strong> pada kertas berpetak / Canva. Setelah selesai menggambar, unggah foto hasil pekerjanmu ke folder Google Drive berikut:</p>
        
        <div class="lab-card text-center my-3 bg-[#fdf8ec] p-4 border border-[#e0a526] rounded-lg">
         <button id="openDriveFolder" class="cta mb-2" type="button">📁 Unggah Hasil Lukisan Sketsa ke Google Drive</button>
@@ -211,11 +228,11 @@
       <article class="mission">
        <h2>Misi 3: Rumuskan Dugaan Titik Potong</h2>
        <p class="font-bold text-sm">Berdasarkan sketsa grafik manual yang telah kamu buat:</p>
-       <label>a. Berapa banyak titik potong yang terlihat antara kurva y₁ dan y₂?</label>
+       <label>a. Berapa banyak titik potong yang terlihat antara kurva $y_1$ dan $y_2$?</label>
        <select id="misi3_jml_potong" data-field="misi3_jml_potong"><option value="">Pilih jumlah</option><option>0 Titik</option><option>1 Titik</option><option>2 Titik</option></select>
        <label class="mt-2">b. Perkiraan koordinat titik potong tersebut:</label>
        <input id="misi3_koordinat" data-field="misi3_koordinat" type="text" placeholder="Contoh: (-2,0) dan (3, 2.24)">
-       <label class="mt-2">c. Apakah tersangka hasil aljabar (x = 3 dan x = -2) cocok dengan titik potong pada grafikmu?</label>
+       <label class="mt-2">c. Apakah tersangka hasil aljabar ($x = 3$ dan $x = -2$) cocok dengan titik potong pada grafikmu?</label>
        <select id="misi3_cocok" data-field="misi3_cocok"><option value="">Pilih</option><option>Ya</option><option>Tidak</option></select>
       </article>
       <div class="save-row">
@@ -224,6 +241,7 @@
       </div>
      </div>
     </section>
+
     <!-- TAHAP 2: OBSERVE -->
     <section id="observe" class="page">
      <div class="a4-sheet lab-sheet">
@@ -231,28 +249,27 @@
       <h1 class="page-title">Olah TKP GeoGebra</h1>
       <p class="text-sm">🔍 Bukti grafik digital telah siap. Eksplorasi langsung grafik interaktif di bawah ini untuk mengonfirmasi titik potongnya!</p>
       
-      <!-- EMBEDDED GEOGEBRA -->
       <div class="embed-container">
         <iframe src="https://www.geogebra.org/calculator/drg2nq7s?embed" title="Laboratorium GeoGebra Interaktif" allowfullscreen></iframe>
       </div>
       <article class="mission mt-4">
        <h2>Misi 4: Verifikasi &amp; Eksplorasi Slider</h2>
-       <p class="text-sm">Amati kurva <strong>y₁ = √(x² − 4)</strong> (Warna Merah) dan kurva <strong>y₂ = √(x + 2)</strong> (Warna Biru). Geser Slider a ke koordinat tersangka:</p>
+       <p class="text-sm">Amati kurva <strong>$y_1 = \sqrt{x^2 - 4}$</strong> (Warna Merah) dan kurva <strong>$y_2 = \sqrt{x + 2}$</strong> (Warna Biru). Geser Slider a ke koordinat tersangka:</p>
        <div class="grid2 mt-2">
         <div>
-         <label>Saat x = −2:</label>
+         <label>Saat $x = -2$:</label>
          <input id="misi4_xneg2_val" data-field="misi4_xneg2_val" type="text" placeholder="Nilai y1 = ... dan y2 = ...">
          <label class="mt-1">Apakah kedua kurva menempel di titik pangkal yang sama?</label>
          <select id="misi4_xneg2_menempel" data-field="misi4_xneg2_menempel"><option value="">Pilih</option><option>Ya</option><option>Tidak</option></select>
         </div>
         <div>
-         <label>Saat x = 3:</label>
+         <label>Saat $x = 3$:</label>
          <input id="misi4_x3_val" data-field="misi4_x3_val" type="text" placeholder="Nilai y1 = ... dan y2 = ...">
          <label class="mt-1">Apakah terjadi perpotongan kurva?</label>
          <select id="misi4_x3_potong" data-field="misi4_x3_potong"><option value="">Pilih</option><option>Ya</option><option>Tidak</option></select>
         </div>
        </div>
-       <label class="mt-3">Titik Potong Persis dari GeoGebra [Intersect(y₁, y₂)]:</label>
+       <label class="mt-3">Titik Potong Persis dari GeoGebra [Intersect($y_1, y_2$)]:</label>
        <div class="grid2">
         <input id="misi4_titikA" data-field="misi4_titikA" type="text" placeholder="Titik A = (..., ...)">
         <input id="misi4_titikB" data-field="misi4_titikB" type="text" placeholder="Titik B = (..., ...)">
@@ -260,41 +277,91 @@
       </article>
       <div class="save-row">
        <button class="secondary" data-go="predict" type="button">← Sebelumnya</button>
-       <div><span id="observeStatus" class="status mr-2"></span><button id="saveObserve" class="cta" type="button">Simpan Bukti &amp; Lanjut →</button></div>
+       <div><span id="observeStatus" class="status mr-2"></span><button id="saveObserve" class="cta" type="button">Simpan Bukti &amp; Lanjut ke Explain →</button></div>
       </div>
      </div>
     </section>
+
     <!-- TAHAP 3: EXPLAIN -->
     <section id="explain" class="page">
      <div class="a4-sheet">
       <div class="ribbon">TAHAP 3: EXPLAIN</div>
-      <h1 class="page-title">Ruang Interogasi AI</h1>
+      <h1 class="page-title">Materi Konsep &amp; Interogasi AI</h1>
+      
+      <!-- MODUL KONSEP FORMAL LENGKAP BERSAMA MATHJAX RAPI -->
+      <article class="mission border-2 border-[#E0A526] bg-[#fdf8ec] p-4 rounded-lg mb-4">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xl">📖</span>
+          <h2 class="font-bold text-[#1B2A41] text-base m-0">MODUL KONSEP FORMAL: Persamaan &amp; Fungsi Irasional</h2>
+        </div>
+        
+        <div class="text-sm space-y-3 text-slate-800 leading-relaxed border-t border-[#e0a526]/30 pt-3 mt-2">
+          <div>
+            <h3 class="font-bold text-[#1B2A41] m-0 mb-1">A. Hakikat Persamaan Irasional</h3>
+            <p class="m-0">Persamaan irasional adalah persamaan matematika yang memuat variabel (seperti $x$) di dalam tanda akar. Bentuk umumnya dituliskan sebagai $\sqrt{f(x)} = \sqrt{g(x)}$ atau $\sqrt{f(x)} = g(x)$. Contoh: $\sqrt{x^2 - 4} = \sqrt{x + 2}$. Perhatikan bahwa persamaan seperti $x\sqrt{3} = 5$ <em>bukan</em> persamaan irasional karena variabel $x$ berada di luar tanda akar.</p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-[#1B2A41] m-0 mb-1">B. Syarat Keamanan Utama (Domain Real)</h3>
+            <p class="m-0">Dalam himpunan bilangan real, ada dua aturan mutlak yang wajib dipatuhi:</p>
+            <ul class="list-disc pl-5 mt-1 space-y-1">
+              <li><strong>Hasil akar kuadrat tidak pernah negatif:</strong> Nilai dari $\sqrt{a} \ge 0$. Contoh: $\sqrt{4} = 2$, bukan $\pm 2$.</li>
+              <li><strong>Bilangan di dalam akar berpangkat genap tidak boleh negatif:</strong> Agar terdefinisi secara real, fungsi di dalam akar wajib bernilai $f(x) \ge 0$ dan $g(x) \ge 0$. Irisan dari syarat inilah yang menjadi daerah asal (domain) sah penyelesaian.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-[#1B2A41] m-0 mb-1">C. Fenomena "Akar Asing" (Extraneous Root)</h3>
+            <p class="m-0">Cara paling umum menghilangkan tanda akar adalah dengan mengkuadratkan kedua ruas. Namun ingat: $a = b \implies a^2 = b^2$, tetapi kebalikannya TIDAK selalu berlaku ($a^2 = b^2 \implies a = b$ atau $a = -b$). Proses pengkuadratan ini sering memunculkan nilai $x$ "palsu" yang sebenarnya tidak memenuhi persamaan awal. Nilai palsu ini disebut <strong>Akar Asing (*extraneous root*)</strong>.</p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-[#1B2A41] m-0 mb-1">D. Empat Langkah Penyelesaian Formal</h3>
+            <ol class="list-decimal pl-5 mt-1 space-y-1">
+              <li><strong>Langkah 1 (Syarat):</strong> Tentukan domain terdefinisi $f(x) \ge 0$ dan $g(x) \ge 0$.</li>
+              <li><strong>Langkah 2 (Kuadratkan):</strong> Kuadratkan kedua ruas untuk merubah persamaan menjadi bentuk aljabar biasa.</li>
+              <li><strong>Langkah 3 (Selesaikan):</strong> Cari nilai $x$ calon tersangka dari persamaan aljabar tersebut.</li>
+              <li><strong>Langkah 4 (Verifikasi):</strong> Cek setiap nilai $x$ terhadap irisan syarat domain di Langkah 1 dan substitusi ke persamaan awal untuk menyeleksi akar asing.</li>
+            </ol>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-[#1B2A41] m-0 mb-1">E. Makna Visual/Geometris</h3>
+            <p class="m-0">Menyelesaikan persamaan $\sqrt{f(x)} = \sqrt{g(x)}$ secara visual sama artinya dengan mencari <strong>koordinat titik potong</strong> antara grafik kurva $y_1 = \sqrt{f(x)}$ dan $y_2 = \sqrt{g(x)}$ pada bidang kartesius. Jika kedua kurva berpotongan atau menempel di titik tertentu, maka koordinat $x$ tersebut merupakan penyelesaian yang sah!</p>
+          </div>
+        </div>
+      </article>
+
       <div class="inspector mb-4">
        <div class="detective"><div class="hat"></div><div class="face"><span class="eye a"></span><span class="eye b"></span><span class="moustache"></span></div><div class="coat"></div></div>
        <div>
         <p class="type text-[#E0A526] font-bold m-0 mb-1">INSPEKTUR AKAR (AI)</p>
-        <div class="bubble">Aku hanya bertanya, kamulah yang menemukan jawabannya. Mulai percakapan pada jendela obrolan di bawah ini!</div>
+        <div class="bubble">Diskusikan temuanmu bersama AI di bawah ini atau tanyakan bagian materi formal yang belum kamu pahami!</div>
        </div>
       </div>
-      <!-- EMBEDDED CHATBOT AI BOTPRESS -->
-      <div class="embed-container" style="height:550px;">
+      
+      <!-- CHATBOT AI BOTPRESS -->
+      <div class="embed-container" style="height:500px;">
         <iframe src="https://cdn.botpress.cloud/webchat/v5.0/shareable.html?configUrl=https://files.bpcontent.cloud/2026/10/07/06/20261007062343-KC46QV6R.json" title="Chatbot Inspektur Akar" allow="microphone"></iframe>
       </div>
+      
+      <!-- MISI 5: 1 KOTAK KESIMPULAN FOKUS -->
       <article class="mission mt-4">
-       <h2>Misi 5: Diskusi Sokratik bersama AI</h2>
-       <p class="text-sm">Buka chat, diskusikan kenapa x = -2 dan x = 3 keduanya merupakan penyelesaian yang sah. Tuliskan 3 poin penting hasil diskusimu:</p>
-       <div class="grid3 mt-2">
-        <div><label>Kesimpulan 1</label><textarea id="misi5_diskusi1" data-field="misi5_diskusi1"></textarea></div>
-        <div><label>Kesimpulan 2</label><textarea id="misi5_diskusi2" data-field="misi5_diskusi2"></textarea></div>
-        <div><label>Kesimpulan 3</label><textarea id="misi5_diskusi3" data-field="misi5_diskusi3"></textarea></div>
+       <h2>Misi 5: Refleksi &amp; Kesimpulan Akhir</h2>
+       <div class="mt-2">
+        <label class="font-bold text-[#1B2A41]">Kesimpulan Penyelidikan:</label>
+        <p class="text-xs text-slate-600 m-0 mb-2">Bandingkan pemahaman awalmu dari hasil olah TKP GeoGebra &amp; AI Chatbot dengan Modul Konsep Formal di atas. Tuliskan kesimpulan utamamu mengapa $x = -2$ dan $x = 3$ keduanya merupakan penyelesaian yang sah!</p>
+        <textarea id="misi5_diskusi1" data-field="misi5_diskusi1" placeholder="Contoh: Setelah mengecek GeoGebra, AI, dan modul materi formal, saya menyimpulkan bahwa kedua nilai x sah karena memenuhi irisan domain dan membentuk titik potong/tempel pada grafik..."></textarea>
        </div>
       </article>
+      
       <div class="save-row">
        <button class="secondary" data-go="observe" type="button">← Sebelumnya</button>
        <div><span id="explainStatus" class="status mr-2"></span><button id="saveExplain" class="cta" type="button">Lanjut ke Lembar Putusan →</button></div>
       </div>
      </div>
     </section>
+
     <!-- LEMBAR PUTUSAN -->
     <section id="verdict" class="page">
      <div class="a4-sheet">
@@ -303,10 +370,10 @@
       <p class="type text-[#C0392B] font-bold text-sm">BERKAS AKHIR • ISI BERDASARKAN BUKTI BERSAMA INSPEKTUR AKAR</p>
       
       <article class="mission">
-       <label for="misi6_alasan_sah">1. Mengapa pada kasus √(x² − 4) = √(x + 2) kedua nilai x hasil pengkuadratan (x = -2 dan x = 3) lolos sebagai penyelesaian sah?</label>
+       <label for="misi6_alasan_sah">1. Mengapa pada kasus $\sqrt{x^2 - 4} = \sqrt{x + 2}$ kedua nilai x hasil pengkuadratan ($x = -2$ dan $x = 3$) lolos sebagai penyelesaian sah?</label>
        <textarea id="misi6_alasan_sah" data-field="misi6_alasan_sah" placeholder="Jelaskan berdasarkan irisan domain dan pengujian grafik..."></textarea>
        
-       <label for="misi6_arti_visual" class="mt-3">2. Hubungan Konseptual: Menyelesaikan persamaan irasional f(x) = g(x) secara visual sama artinya dengan mencari...</label>
+       <label for="misi6_arti_visual" class="mt-3">2. Hubungan Konseptual: Menyelesaikan persamaan irasional $f(x) = g(x)$ secara visual sama artinya dengan mencari...</label>
        <input id="misi6_arti_visual" data-field="misi6_arti_visual" type="text" placeholder="titik ... antara grafik fungsi y1 dan y2">
        
        <label for="misi6_hp" class="mt-3">3. Kesimpulan Himpunan Penyelesaian (HP):</label>
@@ -328,13 +395,24 @@
       </div>
      </div>
     </section>
-    <!-- PENUTUP -->
+
+    <!-- PENUTUP & NILAI -->
     <section id="closing" class="page">
      <div class="a4-sheet text-center">
       <div class="stamp bg-[#2f8d68] border-[#2f8d68] text-white">KASUS TERPECAHKAN</div>
       <h1 class="page-title mt-6">Penghargaan Agen Detektif</h1>
-      <p class="max-w-2xl mx-auto text-base font-bold">Selamat, Agen! Kamu telah berhasil memecahkan Kasus Dua Bukti Kembar dan membuktikan bahwa penyelesaian persamaan irasional selaras dengan titik potong grafik fungsinya.</p>
+      <p class="max-w-2xl mx-auto text-base font-bold">🌟 Luar biasa, Agen! Kamu telah menyelesaikan seluruh rangkaian investigasi Kasus Dua Bukti Kembar dengan sangat baik!</p>
       
+      <!-- KOTAK SKOR OBJEKTIF -->
+      <div class="score-box">
+        <div class="score-title">SKOR PENYELIDIKAN OBJEKTIF (PREDICT &amp; OBSERVE)</div>
+        <div id="finalScore" class="score-num">0 / 100</div>
+        <p class="text-xs text-slate-300 m-0 leading-relaxed">
+          💪 <strong>Tetap Semangat!</strong> Nilai di atas adalah hasil pemeriksaan otomatis untuk tahap Predict &amp; Observe.<br>
+          📌 <em>Catatan: Jawaban esai kesimpulan pada tahap Explain, Lembar Putusan, serta hasil lukisan grafik di Google Drive akan diperiksa langsung oleh Guru untuk memberikan poin nilai tambahan!</em>
+        </p>
+      </div>
+
       <div class="mission mt-7 text-left">
        <h2>Ringkasan Progres Agen</h2>
        <p id="closingProgress" class="font-bold">Memuat progres…</p>
@@ -349,6 +427,7 @@
     </section>
    </main>
   </div>
+  
   <!-- MODAL PROFILE -->
   <div id="profileModal" class="modal">
    <div class="modal-box">
@@ -366,10 +445,15 @@
     </div>
    </div>
   </div>
+
   <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw01ZF4NQMKAY2SC9WWk-0A3gS5NQofjCJjEpLbW8OuuIK3aSohQU5rpIt-BbDG9YJ4tw/exec";
+    // URL Web App Google Apps Script Terbaru milikmu
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbweiDjUcTAg7flbZB0I1fpUJYHERx8TFAHosQaTtUnD7VpZgA7FMZ5Kx9yZOr1WHchYTg/exec";
     const DRIVE_FOLDER_URL = "https://drive.google.com/drive/folders/1ExtSC8PxRCGqAC-wNKRRZr6cbxlBkDLQ?usp=sharing"; 
+    
     let currentRecord = null, activePage = "cover";
+    const completedStages = { predict: false, observe: false, explain: false, verdict: false };
+    
     const $ = selector => document.querySelector(selector);
     
     function profileValues(){
@@ -390,6 +474,38 @@
       const kelas = currentRecord?.kelas || $("#kelasSiswa").value.trim();
       $("#agentGreeting").textContent = name ? `Agen Detektif: ${name}${kelas ? " • " + kelas : ""}` : "Agen Detektif";
     }
+
+    // FUNGSI PENILAIAN OTOMATIS TAHAP PREDICT & OBSERVE
+    function calculateObjectiveScore(data){
+      let score = 0;
+      const clean = str => String(str || "").toLowerCase().replace(/\s+/g, '');
+
+      // Misi 1a (25 poin)
+      if(clean(data.misi1a_syarat1) === "-2") score += 5;
+      if(clean(data.misi1a_syarat1_b) === "2") score += 5;
+      if(clean(data.misi1a_syarat2) === "-2") score += 5;
+      if(clean(data.misi1a_irisan) === "-2") score += 5;
+      if(clean(data.misi1a_irisan_b) === "2") score += 5;
+
+      // Misi 1b (25 poin)
+      if(clean(data.misi1b_kuadrat).includes("x+2")) score += 5;
+      if(clean(data.misi1b_persamaan) === "6") score += 5;
+      if(clean(data.misi1b_faktor) === "3") score += 5;
+      if(clean(data.misi1b_tersangka) === "3" || clean(data.misi1b_tersangka) === "-2") score += 5;
+      if(clean(data.misi1b_tersangka2) === "3" || clean(data.misi1b_tersangka2) === "-2") score += 5;
+
+      // Misi 3 (10 poin)
+      if(clean(data.misi3_jml_potong).includes("2")) score += 5;
+      if(clean(data.misi3_cocok) === "ya") score += 5;
+
+      // Misi 4 GeoGebra (40 poin)
+      if(clean(data.misi4_xneg2_menempel) === "ya") score += 10;
+      if(clean(data.misi4_x3_potong) === "ya") score += 10;
+      if(clean(data.misi4_titikA).includes("-2,0") || clean(data.misi4_titikA).includes("(-2,0)")) score += 10;
+      if(clean(data.misi4_titikB).includes("3,2.24") || clean(data.misi4_titikB).includes("(3,2.24)") || clean(data.misi4_titikB).includes("3, 2.24")) score += 10;
+
+      return score;
+    }
     
     function currentData(){
       const data = {...(currentRecord || {}), ...profileValues()};
@@ -400,20 +516,58 @@
           else data[key] = el.value;
         }
       });
+      data.skor_objektif = calculateObjectiveScore(data);
       data.last_page = activePage;
       data.updated_at = new Date().toISOString();
       return data;
     }
+
+    // VALIDATOR KELENGKAPAN FIELD UNTUK UNLOCK TAHAP
+    function isStageComplete(stageId) {
+      const data = currentData();
+      if(stageId === "predict") {
+        const fields = ["misi1a_syarat1","misi1a_syarat1_b","misi1a_syarat2","misi1a_irisan","misi1a_irisan_b","misi1b_kuadrat","misi1b_persamaan","misi1b_faktor","misi1b_tersangka","misi1b_tersangka2","misi3_jml_potong","misi3_koordinat","misi3_cocok"];
+        return fields.every(f => String(data[f] || "").trim() !== "");
+      }
+      if(stageId === "observe") {
+        const fields = ["misi4_xneg2_val","misi4_xneg2_menempel","misi4_x3_val","misi4_x3_potong","misi4_titikA","misi4_titikB"];
+        return fields.every(f => String(data[f] || "").trim() !== "");
+      }
+      if(stageId === "explain") {
+        const fields = ["misi5_diskusi1"];
+        return fields.every(f => String(data[f] || "").trim() !== "");
+      }
+      if(stageId === "verdict") {
+        const fields = ["misi6_alasan_sah","misi6_arti_visual","misi6_hp","misi6_refleksi","misi6_keyakinan"];
+        return fields.every(f => String(data[f] || "").trim() !== "");
+      }
+      return true;
+    }
     
     function progress(){
       const data = currentData();
-      const core = ["misi1a_syarat1","misi1a_syarat2","misi1a_irisan","misi1b_kuadrat","misi1b_persamaan","misi1b_tersangka","misi3_jml_potong","misi4_xneg2_val","misi4_x3_val","misi5_diskusi1","misi5_diskusi2","misi6_alasan_sah","misi6_hp"];
+      const core = ["misi1a_syarat1","misi1a_syarat2","misi1a_irisan","misi1b_kuadrat","misi1b_persamaan","misi1b_tersangka","misi3_jml_potong","misi4_xneg2_val","misi4_x3_val","misi5_diskusi1","misi6_alasan_sah","misi6_hp"];
       const count = core.filter(key => String(data[key] || "").trim()).length;
       const percent = Math.round((count / core.length) * 100);
+      
       $("#progressBar").style.width = percent + "%";
       $("#progressText").textContent = percent + "%";
       $("#closingBar").style.width = percent + "%";
       $("#closingProgress").textContent = `${count} dari ${core.length} bukti utama telah dicatat (${percent}%).`;
+      $("#finalScore").textContent = `${data.skor_objektif} / 100`;
+
+      // Update Nav Lock States
+      $("#navObserve").disabled = !completedStages.predict;
+      $("#navObserve").textContent = completedStages.predict ? "Observe" : "Observe 🔒";
+
+      $("#navExplain").disabled = !completedStages.observe;
+      $("#navExplain").textContent = completedStages.observe ? "Explain" : "Explain 🔒";
+
+      $("#navVerdict").disabled = !completedStages.explain;
+      $("#navVerdict").textContent = completedStages.explain ? "Putusan" : "Putusan 🔒";
+
+      $("#navClosing").disabled = !completedStages.verdict;
+      $("#navClosing").textContent = completedStages.verdict ? "Penutup" : "Penutup 🔒";
     }
     
     function showPage(id){
@@ -421,12 +575,24 @@
         showPage("cover"); 
         return; 
       }
+
+      // Check stage lock before opening page
+      if(id === "observe" && !completedStages.predict) return;
+      if(id === "explain" && !completedStages.observe) return;
+      if(id === "verdict" && !completedStages.explain) return;
+      if(id === "closing" && !completedStages.verdict) return;
+
       activePage = id;
       document.querySelectorAll(".page").forEach(page => page.classList.toggle("active", page.id === id));
       document.querySelectorAll("[data-go]").forEach(button => button.classList.toggle("active", button.dataset.go === id));
       $("#appHeader").classList.toggle("hidden", id === "cover");
       window.scrollTo({top:0,behavior:"smooth"});
       progress();
+
+      // Rerender MathJax jika halaman berganti
+      if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
     }
     
     function setStatus(id, message, bad=false){ 
@@ -475,20 +641,28 @@
       }, 300);
     }
     
-    async function save(control, statusId, nextPage, complete=false){
+    async function save(control, statusId, nextPage, stageName, complete=false){
+      if(!isStageComplete(stageName)) {
+        setStatus(statusId, "⚠️ Isi semua bidang pada tahap ini terlebih dahulu untuk membuka tahap berikutnya!", true);
+        return;
+      }
+
       const payload = currentData();
       if(!validIdentity(payload)){ 
         showPage("cover"); 
         setStatus(statusId,"Lengkapi identitas pada sampul terlebih dahulu.",true); 
         return; 
       }
+
       control.disabled = true;
       const original = control.textContent;
       control.textContent = "Menyimpan…";
+      
+      completedStages[stageName] = true;
       sendToGoogleSheets({...payload, completed: complete});
       
       setTimeout(() => {
-        setStatus(statusId,"Draf tersimpan.");
+        setStatus(statusId,"Draf tersimpan & Tahap Terbuka!");
         control.disabled = false;
         control.textContent = original;
         if(nextPage) showPage(nextPage);
@@ -530,10 +704,10 @@
     document.querySelectorAll("input, select, textarea").forEach(element=>element.addEventListener("input",progress));
     
     $("#startButton").addEventListener("click",event=>saveIdentity(event.currentTarget));
-    $("#savePredict").addEventListener("click",event=>save(event.currentTarget,"#predictStatus","observe"));
-    $("#saveObserve").addEventListener("click",event=>save(event.currentTarget,"#observeStatus","explain"));
-    $("#saveExplain").addEventListener("click",event=>save(event.currentTarget,"#explainStatus","verdict"));
-    $("#saveVerdict").addEventListener("click",event=>save(event.currentTarget,"#verdictStatus","closing",true));
+    $("#savePredict").addEventListener("click",event=>save(event.currentTarget,"#predictStatus","observe","predict"));
+    $("#saveObserve").addEventListener("click",event=>save(event.currentTarget,"#observeStatus","explain","observe"));
+    $("#saveExplain").addEventListener("click",event=>save(event.currentTarget,"#explainStatus","verdict","explain"));
+    $("#saveVerdict").addEventListener("click",event=>save(event.currentTarget,"#verdictStatus","closing","verdict",true));
     
     $("#openDriveFolder").addEventListener("click", () => {
       window.open(DRIVE_FOLDER_URL, "_blank", "noopener,noreferrer");
@@ -541,6 +715,7 @@
     $("#profileButton").addEventListener("click",openProfile);
     $("#cancelProfile").addEventListener("click",()=>$("#profileModal").classList.remove("show"));
     $("#saveProfile").addEventListener("click",event=>updateProfile(event.currentTarget));
+    
     document.addEventListener("DOMContentLoaded",()=>{
       if(window.lucide) lucide.createIcons();
       progress();
